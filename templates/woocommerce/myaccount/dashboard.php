@@ -87,6 +87,15 @@
                 }
         }
 
+    // Used to create menu items.
+    function create_menu_item($title, $url)
+        {
+
+            $menu_item_html = '<a href="'.$url.'" '.pn_acc_link_is_active($page_url, '/my-account/feature_tour/').'><div class="menu-item"><span>'.$title.'</span></div></a>';
+
+            return $menu_item_html;
+        }
+
     // Capture current user for Personalised Welcome.
     global $current_user;
     wp_get_current_user();
@@ -128,6 +137,12 @@ $allowed_html = array(
     echo pn_acc_welcome_message($user_name);
 
 	if ( is_user_logged_in() ) {
+
+    $menu_items = array (
+        array('Orders', '/my-account/orders/'),
+        array('Orders', '/my-account/orders/')
+    );
+
 ?>
 
     <div id="pn_myacc">
@@ -137,16 +152,9 @@ $allowed_html = array(
     
     if (get_option('pn_acc_custom_page_1_toggle') === 'active')
         {
+            echo create_menu_item('Take a tour of the features new', '/my-account/feature_tour/');
+        }
 
-?>
-            <a href="/my-account/feature_tour/" <?php pn_acc_link_is_active($page_url, '/my-account/feature_tour/'); ?>>
-                <div class="menu-item">
-                    <span>Take a tour of the features</span>
-                </div>
-            </a>
-
-<?php
-        } // Closes the "check custom page 1 toggle is active".
 ?>
             <a href="/my-account/orders/" <?php pn_acc_link_is_active($page_url, '/my-account/orders/'); ?>>
                 <div class="menu-item">
@@ -159,6 +167,17 @@ $allowed_html = array(
             // If b2bking is installed, add extra menu items.
             if ( $b2b )
                 {
+
+                    $b2b_menu_items = array (
+                        array('Bulk Order', '/my-account/?bulkorder'),
+                        array('Purchase Lists', '/my-account/?purchase-lists')
+                    );
+
+                    foreach ($b2b_menu_items as $menu_item)
+                        {
+                            echo create_menu_item($menu_item[0], $menu_item[1]);
+                        }
+                
 
         ?>
         

@@ -26,9 +26,9 @@ function pn_acc_settings_init()
 		echo '<div class="wrap">
 		<div style="display: flex; align-content: center;">
 		<img src="'.plugin_dir_url( __FILE__ ).'assets/images/pn-delta.svg" width="28" height="28" style="margin-right: 10px;">
-		<h1 style="display: inline-block; padding: 0;">PageNorth - My Account Customisations</h1>
-		</div>
-		<form method="post" action="options.php">';
+		<h1 style="display: inline-block; padding: 0; margin-right: 20px;">PageNorth - My Account Customisations</h1></div><br>';
+
+		echo '<form method="post" action="options.php">';
 
 			settings_fields( 'pn_acc_settings' ); // settings group name
 			do_settings_sections( 'pn-my-acc-settings-page' ); // just a page slug
@@ -124,14 +124,9 @@ function pn_acc_custom_page_1_post_id_render()
 		// Get the post id from the settings in the DB.
 		$post_id = get_option( 'pn_acc_custom_page_1_post_id', '0' );
 		$disabled = '';
-
-		if (get_option('pn_acc_custom_page_1_toggle') === 'inactive')
-			{
-				$disabled = 'disabled';
-			}
 		
 		printf(
-			'<input type="number" id="pn_acc_custom_page_1_post_id" name="pn_acc_custom_page_1_post_id" value="%s" '.$disabled.'/>',
+			'<input type="number" id="pn_acc_custom_page_1_post_id" name="pn_acc_custom_page_1_post_id" value="%s" />',
 			esc_attr( $post_id )
 		);
 
