@@ -75,7 +75,6 @@
     #pn_myacc .menu-items-wrapper {
         display: -ms-grid;
         display: grid;
-        -ms-grid-columns: (1fr) [2];
         grid-template-columns: repeat(2, 1fr);
     }
     #pn_myacc .menu-items-wrapper .menu-item span {
