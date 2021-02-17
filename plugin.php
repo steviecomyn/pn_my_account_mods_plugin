@@ -28,8 +28,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 //============================================================================================================ INCLUDES //
 
-// This code adds in the settings page functionality.
-include('plugin-settings.php');
+// This code adds in the settings(constants).
+include('assets/config.php');
+// This brings in the settings page code.
+include('settings-page.php');
 // This code adds the ability to use shortcodes to place Oxygen Reusable Template parts in pages.
 include('oxygen-shortcode.php');
 // This code adds the ability to add new pages to My Account, using the above shortcodes.
@@ -44,7 +46,7 @@ add_action( 'wp_enqueue_scripts', 'pm_myacc_enqueue_files' );
 function pm_myacc_enqueue_files() {
 
 	// Loads FontAwesome 5.1 from a CDN.
-	wp_register_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css' );
+	wp_register_style( 'font-awesome', FONTAWESOME_CDN );
     wp_enqueue_style( 'font-awesome' );
 
 	// loads a My Accounts CSS file in the head.
@@ -53,7 +55,7 @@ function pm_myacc_enqueue_files() {
 
 }
 
-add_filter( 'woocommerce_locate_template', 'intercept_wc_template', 10, 3 );
+add_filter( 'woocommerce_locate_template', 'pn_acc_intercept_wc_template', 10, 3 );
 /**
  * Filter the given template path to use local templates found in this plugin instead of the ones in WooCommerce.
  *
@@ -63,7 +65,7 @@ add_filter( 'woocommerce_locate_template', 'intercept_wc_template', 10, 3 );
  *
  * @return string The new Template file path.
  */
-function intercept_wc_template( $template, $template_name, $template_path ) {
+function pn_acc_intercept_wc_template( $template, $template_name, $template_path ) {
 
 	// Here we define the pages to replace with local (to this plugin) versions.
 	if ( 'dashboard.php' === basename( $template ) ) {
