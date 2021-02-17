@@ -26,7 +26,7 @@ function pn_acc_settings_init()
 		echo '<div class="wrap">
 		<div style="display: flex; align-content: center;">
 		<img src="'.plugin_dir_url( __FILE__ ).'assets/images/pn-delta.svg" width="28" height="28" style="margin-right: 10px;">
-		<h1 style="display: inline-block;">PageNorth - My Account Customisations</h1>
+		<h1 style="display: inline-block; padding: 0;">PageNorth - My Account Customisations</h1>
 		</div>
 		<form method="post" action="options.php">';
 
@@ -123,16 +123,20 @@ function pn_acc_custom_page_1_post_id_render()
 	{
 		// Get the post id from the settings in the DB.
 		$post_id = get_option( 'pn_acc_custom_page_1_post_id', '0' );
+		$disabled = '';
+
+		if (get_option('pn_acc_custom_page_1_toggle') === 'inactive')
+			{
+				$disabled = 'disabled';
+			}
 		
 		printf(
-			'<input type="number" id="pn_acc_custom_page_1_post_id" name="pn_acc_custom_page_1_post_id" value="%s" />',
+			'<input type="number" id="pn_acc_custom_page_1_post_id" name="pn_acc_custom_page_1_post_id" value="%s" '.$disabled.'/>',
 			esc_attr( $post_id )
 		);
 
-		printf('<span class="helper" style="margin-left: 10px;">This is the Post ID of the Oxygen Reusable Part.</span>');
-
 		// Show a link to edit the given page.
 		$url = 'https://ravencampervanconversions.co.uk/wp-admin/post.php?post='.$post_id.'&action=edit';
-		printf('<p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
 		
 	}
