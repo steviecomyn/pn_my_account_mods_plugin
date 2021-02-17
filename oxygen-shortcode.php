@@ -6,6 +6,7 @@
  *
  * @param array $atts Shortcode attributes.
  * @return string HTML output of the specified Oxygen template/reusable part.
+ * @url     https://wpdevdesign.com/shortcode-for-displaying-oxygen-templates-and-reusable-parts/
  */
 
 add_shortcode( 'oxygen-template', 'func_oxygen_template' );

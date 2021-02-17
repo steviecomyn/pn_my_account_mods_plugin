@@ -35,7 +35,7 @@ include('settings-page.php');
 // This code adds the ability to use shortcodes to place Oxygen Reusable Template parts in pages.
 include('oxygen-shortcode.php');
 // This code adds the ability to add new pages to My Account, using the above shortcodes.
-include('add-new-page-to-my-account.php');
+include('custom_page_1.php');
 
 //============================================================================================================ WP_HOOKS //
 

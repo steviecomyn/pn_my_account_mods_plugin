@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * @url	https://rudrastyh.com/wordpress/creating-options-pages.html
+ */
+
 add_action( 'admin_menu', 'pn_acc_settings_page' );
 // Initiate the settings page.
 function pn_acc_settings_page()
@@ -85,10 +89,6 @@ function pn_acc_custom_page_1_toggle_render()
 	{
 
 		$option = get_option( 'pn_acc_custom_page_1_toggle', 'inactive');
-
-		echo '<div style="background-color: #aaffff;">';
-		var_dump($option);
-		echo '</div>';
 
 		$active_checked = '';
         $inactive_checked = '';
