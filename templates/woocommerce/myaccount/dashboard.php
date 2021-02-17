@@ -132,14 +132,23 @@ $allowed_html = array(
 
     <div id="pn_myacc">
         <div class="menu-items-wrapper">
-          
-          	<a href="/my-account/feature_tour/" <?php pn_acc_link_is_active($page_url, '/my-account/feature_tour/'); ?>>
+
+<?php
+    
+    if (get_option('pn_acc_custom_page_1_toggle') === 'active')
+        {
+
+?>
+            <a href="/my-account/feature_tour/" <?php pn_acc_link_is_active($page_url, '/my-account/feature_tour/'); ?>>
                 <div class="menu-item">
                     <span>Take a tour of the features</span>
                 </div>
             </a>
-          
-          	<a href="/my-account/orders/" <?php pn_acc_link_is_active($page_url, '/my-account/orders/'); ?>>
+
+<?php
+        } // Closes the "check custom page 1 toggle is active".
+?>
+            <a href="/my-account/orders/" <?php pn_acc_link_is_active($page_url, '/my-account/orders/'); ?>>
                 <div class="menu-item">
                     <span>Browse Products</span>
                 </div>
@@ -153,13 +162,13 @@ $allowed_html = array(
 
         ?>
         
-          	<a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/?bulkorder') ?>>
+            <a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/?bulkorder') ?>>
                 <div class="menu-item">
                     <span>Bulk Order</span>
                 </div>
             </a>
-          
-          	<a href="/my-account/purchase-lists/" <?php pn_acc_link_is_active($page_url, '/my-account/?purchase-lists') ?>>
+
+            <a href="/my-account/purchase-lists/" <?php pn_acc_link_is_active($page_url, '/my-account/?purchase-lists') ?>>
                 <div class="menu-item">
                     <span>Purchase Lists</span>
                 </div>
@@ -170,34 +179,32 @@ $allowed_html = array(
                 } // Closes the B2BKing Check.
             
         ?>
-          
-          	<a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/') ?>>
+
+            <a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/') ?>>
                 <div class="menu-item">
                     <span>Wishlist</span>
                 </div>
             </a>
-          
-          	<a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/') ?>>
+
+            <a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/') ?>>
                 <div class="menu-item">
                     <span>Personalisation</span>
                 </div>
             </a>
-          
-          
 
             <a href="/my-account/orders/" <?php pn_acc_link_is_active($page_url, '/my-account/orders/'); ?>>
                 <div class="menu-item">
                     <span>Order History</span>
                 </div>
             </a>
-          
-          	<a href="/my-account/edit-account/" <?php pn_acc_link_is_active($page_url, '/my-account/edit-account/') ?>>
+
+            <a href="/my-account/edit-account/" <?php pn_acc_link_is_active($page_url, '/my-account/edit-account/') ?>>
                 <div class="menu-item">
                     <span>Account details</span>
                 </div>
             </a>
-          
-          	<a href="/my-account/faqs/" <?php pn_acc_link_is_active($page_url, '/my-account/faqs/') ?>>
+
+            <a href="/my-account/faqs/" <?php pn_acc_link_is_active($page_url, '/my-account/faqs/') ?>>
                 <div class="menu-item">
                     <span>FAQs</span>
                 </div>
@@ -229,7 +236,6 @@ $allowed_html = array(
             </a>
 
 --->
-
         </div>
     </div>
 

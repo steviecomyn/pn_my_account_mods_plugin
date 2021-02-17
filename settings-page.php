@@ -34,42 +34,99 @@ function pn_acc_settings_init()
 
 add_action( 'admin_init',  'pn_acc_register_setting' );
 // Here we initiate the setting fields.
-function pn_acc_register_setting(){
-	
-	register_setting(
-		'pn_acc_settings', // settings group name
-		'homepage_text', // option name
-		'sanitize_text_field' // sanitization function
-	);
-	
-	add_settings_section(
-		'pn_acc_extra_pages_settings', // section ID
-		'', // title (if needed)
-		'', // callback function (if needed)
-		'pn-my-acc-settings-page' // page slug
-	);
-	
-	add_settings_field(
-		'homepage_text',
-		'Homepage text',
-		'pn_acc_text_field_html', // function which prints the field
-		'pn-my-acc-settings-page', // page slug
-		'pn_acc_extra_pages_settings', // section ID
-		array( 
-			'label_for' => 'homepage_text',
-			'class' => 'pn-acc-class', // for <tr> element
-		)
-	);
-	
-}
-	
-function pn_acc_text_field_html(){
-	
-	$text = get_option( 'homepage_text' );
-	
-	printf(
-		'<input type="text" id="homepage_text" name="homepage_text" value="%s" />',
-		esc_attr( $text )
-	);
-	
-}
+function pn_acc_register_setting()
+	{
+		
+		register_setting(
+			'pn_acc_settings', // settings group name
+			'pn_acc_custom_page_1_toggle' // option name
+		);
+		
+		register_setting(
+			'pn_acc_settings', // settings group name
+			'pn_acc_custom_page_1_post_id', // option name
+			'absint' // sanitization function
+		);
+
+		add_settings_section(
+			'pn_acc_extra_pages_settings', // section ID
+			'Custom Pages', // title (if needed)
+			'', // callback function (if needed)
+			'pn-my-acc-settings-page' // page slug
+		);
+
+		add_settings_field(
+			'pn_acc_custom_page_1_toggle', // UID
+			'Custom Page 1 toggle', // Label
+			'pn_acc_custom_page_1_toggle_render', // function which prints the field
+			'pn-my-acc-settings-page', // page slug
+			'pn_acc_extra_pages_settings', // section ID
+			array( 
+				'label_for' => 'pn_acc_custom_page_1_toggle',
+				'class' => 'pn-acc-class', // for <tr> element
+			)
+		);
+
+		add_settings_field(
+			'pn_acc_custom_page_1_post_id', // UID
+			'Custom Page 1 - Oxygen Reusable Part ID', // Label
+			'pn_acc_custom_page_1_post_id_render', // function which prints the field
+			'pn-my-acc-settings-page', // page slug
+			'pn_acc_extra_pages_settings', // section ID
+			array( 
+				'label_for' => 'pn_acc_custom_page_1_post_id',
+				'class' => 'pn-acc-class', // for <tr> element
+			)
+		);	
+	}
+
+// This renders the toggle switch to activate/deactive the first custom page.
+function pn_acc_custom_page_1_toggle_render()
+	{
+
+		$option = get_option( 'pn_acc_custom_page_1_toggle', 'inactive');
+
+		echo '<div style="background-color: #aaffff;">';
+		var_dump($option);
+		echo '</div>';
+
+		$active_checked = '';
+        $inactive_checked = '';
+
+        if($option === 'active')
+            {
+                $active_checked = 'checked';
+            }
+        else
+            {
+                $inactive_checked = 'checked';
+            }
+		
+	?>
+			<input type="radio" id="pn_acc_custom_page_1_toggle" name="pn_acc_custom_page_1_toggle" value="active" <?php echo $active_checked; ?>>
+			<label for="widget-on">Enabled</label><br>
+			<input type="radio" id="pn_acc_custom_page_1_toggle" name="pn_acc_custom_page_1_toggle" value="inactive" <?php echo $inactive_checked; ?>>
+			<label for="widget-off">Disabled</label><br>
+			<p class="description">This Enables/Disables the first Custom Page.</p>
+	<?php
+		
+	}
+
+// This renders the text field to enter the oxy post id for the first custom page.
+function pn_acc_custom_page_1_post_id_render()
+	{
+		// Get the post id from the settings in the DB.
+		$post_id = get_option( 'pn_acc_custom_page_1_post_id', '0' );
+		
+		printf(
+			'<input type="number" id="pn_acc_custom_page_1_post_id" name="pn_acc_custom_page_1_post_id" value="%s" />',
+			esc_attr( $post_id )
+		);
+
+		printf('<span class="helper">This is the Post ID of the Oxygen Reusable Part.</span>');
+
+		// Show a link to edit the given page.
+		$url = 'https://ravencampervanconversions.co.uk/wp-admin/post.php?post='.$post_id.'&action=edit';
+		printf('<p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+		
+	}
