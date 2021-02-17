@@ -123,12 +123,3 @@ display: none;
 	border: 0 !important;
 	padding: 0 !important;
 }
-
-/* Settings CSS */
-.pn-acc-settings-header-wrapper {
-    display: flex;
-}
-
-.pn-acc-settings-header-wrapper img {
-    margin-right: 10px;
-}

@@ -24,9 +24,9 @@ function pn_acc_settings_init()
 	{
 		// This sets up the settings form.
 		echo '<div class="wrap">
-		<div class="pn-acc-settings-header-wrapper">
-		<img src="'.trailingslashit( plugin_dir_path( __FILE__ ) ) .'assets/images/pn-delta.svg" width="28" height="28">
-		<h1>PageNorth - My Account Customisations</h1>
+		<div style="display: flex; align-content: center;">
+		<img src="'.plugin_dir_url( __FILE__ ).'assets/images/pn-delta.svg" width="28" height="28" style="margin-right: 10px;">
+		<h1 style="display: inline-block;">PageNorth - My Account Customisations</h1>
 		</div>
 		<form method="post" action="options.php">';
 
