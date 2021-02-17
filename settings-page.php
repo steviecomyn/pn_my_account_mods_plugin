@@ -96,6 +96,9 @@ function pn_acc_custom_page_1_toggle_render()
         if($option === 'active')
             {
                 $active_checked = 'checked';
+				// Required to register new page being added.
+				flush_rewrite_rules();
+
             }
         else
             {
@@ -123,7 +126,7 @@ function pn_acc_custom_page_1_post_id_render()
 			esc_attr( $post_id )
 		);
 
-		printf('<span class="helper">This is the Post ID of the Oxygen Reusable Part.</span>');
+		printf('<span class="helper" style="margin-left: 10px;">This is the Post ID of the Oxygen Reusable Part.</span>');
 
 		// Show a link to edit the given page.
 		$url = 'https://ravencampervanconversions.co.uk/wp-admin/post.php?post='.$post_id.'&action=edit';
