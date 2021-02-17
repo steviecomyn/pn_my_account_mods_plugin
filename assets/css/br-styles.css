@@ -111,10 +111,16 @@
     }
 }
 
+/* Modifications to the default WooCommerce Styling */
 .woocommerce-MyAccount-navigation {
 display: none;
 }
 
 .woocommerce-MyAccount-content {
     width: 100% !important;
+}
+
+.woocommerce-EditAccountForm, .woocommerce-Addresses {
+	border: 0 !important;
+	padding: 0 !important;
 }

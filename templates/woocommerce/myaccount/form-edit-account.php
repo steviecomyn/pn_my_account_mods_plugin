@@ -77,7 +77,7 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 
 <?php do_action( 'woocommerce_after_edit_account_form' ); ?>
 
-<br><h3>Addresses</h3>
+<br><hr><br><h3>Addresses</h3>
 
 <?php
 /**
@@ -136,7 +136,7 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 
 <?php do_action( 'woocommerce_after_edit_account_address_form' ); ?>
 
-<br><h3>Payment Methods</h3><br>
+<br><hr><br><h3>Payment Methods</h3><br>
 
 <?php
 /**
