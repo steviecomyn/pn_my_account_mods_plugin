@@ -19,7 +19,27 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_edit_account_form' ); ?>
 
-<br><h3>Account Details</h3><br>
+<?php
+
+    // Creates a uniform page title.
+    function pn_acc_make_page_title($title)
+        {
+            $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; background-color: #f5f5f5; display: grid; place-items: center; margin: 32px 0;">
+                        <div class="wholesale-title-box" style="background-color: #fff; padding: 16px; margin: 2em;display: grid; place-items: center;">
+                            <h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6>
+                            <h1 style="font-weight: 700; margin: 0;">'.$title.'</h1>
+                        </div>
+                    </div>';
+
+            return $snippet;
+
+        }
+
+	echo pn_acc_make_page_title('Account Details');
+
+?>
+
+<!-- <br><h3>Account Details</h3><br> -->
 
 <form class="woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action( 'woocommerce_edit_account_form_tag' ); ?> >
 

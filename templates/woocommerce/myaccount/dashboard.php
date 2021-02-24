@@ -17,11 +17,28 @@
  * @version 4.4.0
  */
 
+// Brings in the plugin's constants file.
+include('../../../assets/config.php');
+
 ?>
 
 <?php
 
 //============================================================================================================ PN_ACC_MODS //
+
+    // Creates a uniform page title.
+    function pn_acc_make_page_title($title)
+        {
+            $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; background-color: #f5f5f5; display: grid; place-items: center;">
+                        <div class="wholesale-title-box" style="background-color: #fff; padding: 16px; margin: 2em;display: grid; place-items: center;">
+                            <h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6>
+                            <h2 style="font-weight: 700; margin: 0;">'.$title.'</h2>
+                        </div>
+                    </div>';
+
+            return $snippet;
+
+        }
 
     // Creates a personalised welcome message.
     function pn_acc_welcome_message($user_name)
@@ -53,7 +70,7 @@
                     }
 
                     //Display our greeting 
-                    $html_output = "<div style=\"width: 100%; text-align:center; margin-bottom: 70px;\"><h2><b>".$user_name."</b></h2><a href=\"/my-account/customer-logout/\" style=\"color: #000;\"><span>Log out</span></a></div>"; 
+                    $html_output = "<div style=\"width: 100%; text-align:center; margin-bottom: 70px;\"><h2><b>".$user_name."</b></h2><a href=\"/".MY_ACCOUNT_SLUG."/customer-logout/\" style=\"color: #000;\"><span>Log out</span></a></div>"; 
                 }
 
             return $html_output;
@@ -91,11 +108,12 @@
     function create_menu_item($title, $url)
         {
 
-            $menu_item_html = '<a href="'.$url.'" '.pn_acc_link_is_active($page_url, '/my-account/feature_tour/').'><div class="menu-item"><span>'.$title.'</span></div></a>';
+            $menu_item_html = '<a href="'.$url.'" '.pn_acc_link_is_active($page_url, '/'.MY_ACCOUNT_SLUG.'/'.$url.'/').'><div class="menu-item"><span>'.$title.'</span></div></a>';
 
             return $menu_item_html;
         }
 
+    
     // Capture current user for Personalised Welcome.
     global $current_user;
     wp_get_current_user();
@@ -109,7 +127,7 @@
 
     $b2b = false;
     // If b2bking is installed, add extra menu items.
-    if ( is_plugin_active( 'b2b-plugin/b2bking.php' &&  is_user_a_b2b_account()) )
+    if ( is_plugin_active( 'b2b-plugin/b2bking.php') && is_user_a_b2b_account() )
         {
             $b2b = true;
         }
@@ -139,8 +157,8 @@ $allowed_html = array(
 	if ( is_user_logged_in() ) {
 
     $menu_items = array (
-        array('Orders', '/my-account/orders/'),
-        array('Orders', '/my-account/orders/')
+        array('Orders', '/'.MY_ACCOUNT_SLUG.'/orders/'),
+        array('Orders', '/'.MY_ACCOUNT_SLUG.'/orders/')
     );
 
 ?>
@@ -152,11 +170,11 @@ $allowed_html = array(
     
     if (get_option('pn_acc_custom_page_1_toggle') === 'active')
         {
-            echo create_menu_item('Take a tour of the features new', '/my-account/feature_tour/');
+            echo create_menu_item('Take a tour of the Features', '/'.MY_ACCOUNT_SLUG.'/feature_tour/');
         }
 
 ?>
-            <a href="/my-account/orders/" <?php pn_acc_link_is_active($page_url, '/my-account/orders/'); ?>>
+            <a href="https://demo.pagenorth.cloud/shop/" target="_blank">
                 <div class="menu-item">
                     <span>Browse Products</span>
                 </div>
@@ -168,96 +186,58 @@ $allowed_html = array(
             if ( $b2b )
                 {
 
+                    // array('Sub-accounts', '/'.MY_ACCOUNT_SLUG.'/?subaccounts')
+
                     $b2b_menu_items = array (
-                        array('Bulk Order', '/my-account/?bulkorder'),
-                        array('Purchase Lists', '/my-account/?purchase-lists')
+                        array('Bulk Order', '/'.MY_ACCOUNT_SLUG.'/?bulkorder'),
+                        array('Purchase Lists', '/'.MY_ACCOUNT_SLUG.'/?purchase-lists')
                     );
 
                     foreach ($b2b_menu_items as $menu_item)
                         {
                             echo create_menu_item($menu_item[0], $menu_item[1]);
                         }
-                
-
-        ?>
-        
-            <a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/?bulkorder') ?>>
-                <div class="menu-item">
-                    <span>Bulk Order</span>
-                </div>
-            </a>
-
-            <a href="/my-account/purchase-lists/" <?php pn_acc_link_is_active($page_url, '/my-account/?purchase-lists') ?>>
-                <div class="menu-item">
-                    <span>Purchase Lists</span>
-                </div>
-            </a>
-
-        <?php
 
                 } // Closes the B2BKing Check.
             
         ?>
 
-            <a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/') ?>>
-                <div class="menu-item">
-                    <span>Wishlist</span>
-                </div>
-            </a>
+<?php
+        if (get_option('pn_acc_custom_page_3_toggle') === 'active')
+        {
+            echo create_menu_item('Wishlist', '/'.MY_ACCOUNT_SLUG.'/wishlist/');
+        }
 
-            <a href="/my-account/bulkorder/" <?php pn_acc_link_is_active($page_url, '/my-account/') ?>>
-                <div class="menu-item">
-                    <span>Personalisation</span>
-                </div>
-            </a>
+        if (get_option('pn_acc_custom_page_4_toggle') === 'active')
+            {
+                echo create_menu_item('Personalisation', '/'.MY_ACCOUNT_SLUG.'/personalisation/');
+            }
 
-            <a href="/my-account/orders/" <?php pn_acc_link_is_active($page_url, '/my-account/orders/'); ?>>
+?>
+
+            <a href="/account/orders/" <?php pn_acc_link_is_active($page_url, '/'.MY_ACCOUNT_SLUG.'/orders/'); ?>>
                 <div class="menu-item">
                     <span>Order History</span>
                 </div>
             </a>
 
-            <a href="/my-account/edit-account/" <?php pn_acc_link_is_active($page_url, '/my-account/edit-account/') ?>>
+            <a href="/account/edit-account/" <?php pn_acc_link_is_active($page_url, '/'.MY_ACCOUNT_SLUG.'/edit-account/') ?>>
                 <div class="menu-item">
                     <span>Account details</span>
                 </div>
             </a>
 
-            <a href="/my-account/faqs/" <?php pn_acc_link_is_active($page_url, '/my-account/faqs/') ?>>
-                <div class="menu-item">
-                    <span>FAQs</span>
-                </div>
-            </a>
-<!---
-            <a href="/my-account/edit-address/" <?php pn_acc_link_is_active($page_url, '/my-account/edit-address/'); ?>>
-                <div class="menu-item">
-                    <span>My Addresses</span>
-                </div>
-            </a>
+<?php
 
-            <a href="/my-account/payment-methods/" <?php pn_acc_link_is_active($page_url, '/my-account/payment-methods/') ?>>
-                <div class="menu-item">
-                    <span>Payment Methods</span>
-                </div>
-            </a>
+            if (get_option('pn_acc_custom_page_2_toggle') === 'active')
+        {
+            echo create_menu_item('FAQs', '/'.MY_ACCOUNT_SLUG.'/faq/');
+        }
+?>
 
-
-            <a href="/my-account/conversations/" <?php pn_acc_link_is_active($page_url, '/my-account/?conversations') ?>>
-                <div class="menu-item">
-                    <span>Conversations</span>
-                </div>
-            </a>
-
-            <a href="/my-account/subaccounts/" <?php pn_acc_link_is_active($page_url, '/my-account/?subaccounts') ?>>
-                <div class="menu-item">
-                    <span>Subaccounts</span>
-                </div>
-            </a>
-
---->
         </div>
     </div>
-
+    <br><br>
 <?php
 
     }
@@ -267,10 +247,10 @@ $allowed_html = array(
 <p>
 	<?php
 	/* translators: 1: Orders URL 2: Address URL 3: Account URL. */
-	$dashboard_desc = __( 'From your account dashboard you can view your <a href="%1$s">recent orders</a>, manage your <a href="%2$s">billing address</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' );
+	$dashboard_desc = __( 'From your account dashboard you can view your <a href="%1$s">order history</a>, manage your <a href="%2$s">billing address</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' );
 	if ( wc_shipping_enabled() ) {
 		/* translators: 1: Orders URL 2: Addresses URL 3: Account URL. */
-		$dashboard_desc = __( 'From your account dashboard you can view your <a href="%1$s">recent orders</a>, manage your <a href="%2$s">shipping and billing addresses</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' );
+		$dashboard_desc = __( 'From your account dashboard you can view your <a href="%1$s">order history</a>, manage your <a href="%3$s">shipping and billing addresses</a>, and <a href="%3$s">edit your password and account details</a>.', 'woocommerce' );
 	}
 	printf(
 		wp_kses( $dashboard_desc, $allowed_html ),

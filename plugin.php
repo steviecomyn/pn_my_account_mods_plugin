@@ -36,6 +36,12 @@ include('settings-page.php');
 include('oxygen-shortcode.php');
 // This code adds the ability to add new pages to My Account, using the above shortcodes.
 include('custom_page_1.php');
+// This code adds the ability to add new pages to My Account, using the above shortcodes.
+include('custom_page_2.php');
+// This code adds the ability to add new pages to My Account, using the above shortcodes.
+include('custom_page_3.php');
+// This code adds the ability to add new pages to My Account, using the above shortcodes.
+include('custom_page_4.php');
 
 //============================================================================================================ WP_HOOKS //
 

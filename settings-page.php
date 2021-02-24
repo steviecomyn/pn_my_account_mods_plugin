@@ -43,7 +43,7 @@ add_action( 'admin_init',  'pn_acc_register_setting' );
 // Here we initiate the setting fields.
 function pn_acc_register_setting()
 	{
-		
+		// Custom Page 1
 		register_setting(
 			'pn_acc_settings', // settings group name
 			'pn_acc_custom_page_1_toggle' // option name
@@ -52,6 +52,42 @@ function pn_acc_register_setting()
 		register_setting(
 			'pn_acc_settings', // settings group name
 			'pn_acc_custom_page_1_post_id', // option name
+			'absint' // sanitization function
+		);
+		
+		// Custom Page 2
+		register_setting(
+			'pn_acc_settings', // settings group name
+			'pn_acc_custom_page_2_toggle' // option name
+		);
+		
+		register_setting(
+			'pn_acc_settings', // settings group name
+			'pn_acc_custom_page_2_post_id', // option name
+			'absint' // sanitization function
+		);
+		
+		// Custom Page 3
+		register_setting(
+			'pn_acc_settings', // settings group name
+			'pn_acc_custom_page_3_toggle' // option name
+		);
+		
+		register_setting(
+			'pn_acc_settings', // settings group name
+			'pn_acc_custom_page_3_post_id', // option name
+			'absint' // sanitization function
+		);
+
+		// Custom Page 3
+		register_setting(
+			'pn_acc_settings', // settings group name
+			'pn_acc_custom_page_4_toggle' // option name
+		);
+		
+		register_setting(
+			'pn_acc_settings', // settings group name
+			'pn_acc_custom_page_4_post_id', // option name
 			'absint' // sanitization function
 		);
 
@@ -82,6 +118,78 @@ function pn_acc_register_setting()
 			'pn_acc_extra_pages_settings', // section ID
 			array( 
 				'label_for' => 'pn_acc_custom_page_1_post_id',
+				'class' => 'pn-acc-class', // for <tr> element
+			)
+		);	
+
+		add_settings_field(
+			'pn_acc_custom_page_2_toggle', // UID
+			'Custom Page 2 toggle', // Label
+			'pn_acc_custom_page_2_toggle_render', // function which prints the field
+			'pn-my-acc-settings-page', // page slug
+			'pn_acc_extra_pages_settings', // section ID
+			array( 
+				'label_for' => 'pn_acc_custom_page_2_toggle',
+				'class' => 'pn-acc-class', // for <tr> element
+			)
+		);
+
+		add_settings_field(
+			'pn_acc_custom_page_2_post_id', // UID
+			'Custom Page 2 - Oxygen Reusable Part ID', // Label
+			'pn_acc_custom_page_2_post_id_render', // function which prints the field
+			'pn-my-acc-settings-page', // page slug
+			'pn_acc_extra_pages_settings', // section ID
+			array( 
+				'label_for' => 'pn_acc_custom_page_2_post_id',
+				'class' => 'pn-acc-class', // for <tr> element
+			)
+		);	
+
+		add_settings_field(
+			'pn_acc_custom_page_3_toggle', // UID
+			'Custom Page 3 toggle', // Label
+			'pn_acc_custom_page_3_toggle_render', // function which prints the field
+			'pn-my-acc-settings-page', // page slug
+			'pn_acc_extra_pages_settings', // section ID
+			array( 
+				'label_for' => 'pn_acc_custom_page_3_toggle',
+				'class' => 'pn-acc-class', // for <tr> element
+			)
+		);
+
+		add_settings_field(
+			'pn_acc_custom_page_3_post_id', // UID
+			'Custom Page 3 - Oxygen Reusable Part ID', // Label
+			'pn_acc_custom_page_3_post_id_render', // function which prints the field
+			'pn-my-acc-settings-page', // page slug
+			'pn_acc_extra_pages_settings', // section ID
+			array( 
+				'label_for' => 'pn_acc_custom_page_3_post_id',
+				'class' => 'pn-acc-class', // for <tr> element
+			)
+		);	
+
+		add_settings_field(
+			'pn_acc_custom_page_4_toggle', // UID
+			'Custom Page 4 toggle', // Label
+			'pn_acc_custom_page_4_toggle_render', // function which prints the field
+			'pn-my-acc-settings-page', // page slug
+			'pn_acc_extra_pages_settings', // section ID
+			array( 
+				'label_for' => 'pn_acc_custom_page_4_toggle',
+				'class' => 'pn-acc-class', // for <tr> element
+			)
+		);
+
+		add_settings_field(
+			'pn_acc_custom_page_4_post_id', // UID
+			'Custom Page 4 - Oxygen Reusable Part ID', // Label
+			'pn_acc_custom_page_4_post_id_render', // function which prints the field
+			'pn-my-acc-settings-page', // page slug
+			'pn_acc_extra_pages_settings', // section ID
+			array( 
+				'label_for' => 'pn_acc_custom_page_4_post_id',
 				'class' => 'pn-acc-class', // for <tr> element
 			)
 		);	
@@ -131,7 +239,155 @@ function pn_acc_custom_page_1_post_id_render()
 		);
 
 		// Show a link to edit the given page.
-		$url = 'https://ravencampervanconversions.co.uk/wp-admin/post.php?post='.$post_id.'&action=edit';
+		$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
+		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+		
+	}
+
+// This renders the toggle switch to activate/deactive the first custom page.
+function pn_acc_custom_page_2_toggle_render()
+	{
+
+		$option = get_option( 'pn_acc_custom_page_2_toggle', 'inactive');
+
+		$active_checked = '';
+        $inactive_checked = '';
+
+        if($option === 'active')
+            {
+                $active_checked = 'checked';
+				// Required to register new page being added.
+				flush_rewrite_rules();
+
+            }
+        else
+            {
+                $inactive_checked = 'checked';
+            }
+		
+	?>
+			<input type="radio" id="pn_acc_custom_page_2_toggle" name="pn_acc_custom_page_2_toggle" value="active" <?php echo $active_checked; ?>>
+			<label for="widget-on">Enabled</label><br>
+			<input type="radio" id="pn_acc_custom_page_2_toggle" name="pn_acc_custom_page_2_toggle" value="inactive" <?php echo $inactive_checked; ?>>
+			<label for="widget-off">Disabled</label><br>
+			<p class="description">This Enables/Disables the first Custom Page.</p>
+	<?php
+		
+	}
+
+// This renders the text field to enter the oxy post id for the first custom page.
+function pn_acc_custom_page_2_post_id_render()
+	{
+		// Get the post id from the settings in the DB.
+		$post_id = get_option( 'pn_acc_custom_page_2_post_id', '0' );
+		$disabled = '';
+		
+		printf(
+			'<input type="number" id="pn_acc_custom_page_2_post_id" name="pn_acc_custom_page_2_post_id" value="%s" />',
+			esc_attr( $post_id )
+		);
+
+		// Show a link to edit the given page.
+		$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
+		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+		
+	}
+
+
+// This renders the toggle switch to activate/deactive the first custom page.
+function pn_acc_custom_page_3_toggle_render()
+	{
+
+		$option = get_option( 'pn_acc_custom_page_3_toggle', 'inactive');
+
+		$active_checked = '';
+        $inactive_checked = '';
+
+        if($option === 'active')
+            {
+                $active_checked = 'checked';
+				// Required to register new page being added.
+				flush_rewrite_rules();
+
+            }
+        else
+            {
+                $inactive_checked = 'checked';
+            }
+		
+	?>
+			<input type="radio" id="pn_acc_custom_page_3_toggle" name="pn_acc_custom_page_3_toggle" value="active" <?php echo $active_checked; ?>>
+			<label for="widget-on">Enabled</label><br>
+			<input type="radio" id="pn_acc_custom_page_3_toggle" name="pn_acc_custom_page_3_toggle" value="inactive" <?php echo $inactive_checked; ?>>
+			<label for="widget-off">Disabled</label><br>
+			<p class="description">This Enables/Disables the first Custom Page.</p>
+	<?php
+		
+	}
+
+// This renders the text field to enter the oxy post id for the first custom page.
+function pn_acc_custom_page_3_post_id_render()
+	{
+		// Get the post id from the settings in the DB.
+		$post_id = get_option( 'pn_acc_custom_page_3_post_id', '0' );
+		$disabled = '';
+		
+		printf(
+			'<input type="number" id="pn_acc_custom_page_3_post_id" name="pn_acc_custom_page_3_post_id" value="%s" />',
+			esc_attr( $post_id )
+		);
+
+		// Show a link to edit the given page.
+		$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
+		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+		
+	}
+
+// This renders the toggle switch to activate/deactive the first custom page.
+function pn_acc_custom_page_4_toggle_render()
+	{
+
+		$option = get_option( 'pn_acc_custom_page_4_toggle', 'inactive');
+
+		$active_checked = '';
+        $inactive_checked = '';
+
+        if($option === 'active')
+            {
+                $active_checked = 'checked';
+				// Required to register new page being added.
+				flush_rewrite_rules();
+
+            }
+        else
+            {
+                $inactive_checked = 'checked';
+            }
+		
+	?>
+			<input type="radio" id="pn_acc_custom_page_4_toggle" name="pn_acc_custom_page_4_toggle" value="active" <?php echo $active_checked; ?>>
+			<label for="widget-on">Enabled</label><br>
+			<input type="radio" id="pn_acc_custom_page_4_toggle" name="pn_acc_custom_page_4_toggle" value="inactive" <?php echo $inactive_checked; ?>>
+			<label for="widget-off">Disabled</label><br>
+			<p class="description">This Enables/Disables the first Custom Page.</p>
+	<?php
+		
+	}
+
+// This renders the text field to enter the oxy post id for the first custom page.
+function pn_acc_custom_page_4_post_id_render()
+	{
+		// Get the post id from the settings in the DB.
+		$post_id = get_option( 'pn_acc_custom_page_4_post_id', '0' );
+		$disabled = '';
+		
+		printf(
+			'<input type="number" id="pn_acc_custom_page_4_post_id" name="pn_acc_custom_page_4_post_id" value="%s" />',
+			esc_attr( $post_id )
+		);
+
+		// Show a link to edit the given page.
+		$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
 		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
 		
 	}
