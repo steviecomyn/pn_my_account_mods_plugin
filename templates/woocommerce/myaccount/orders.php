@@ -28,7 +28,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
         {
             $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; background-color: #f5f5f5; display: grid; place-items: center; margin: 32px 0;">
                         <div class="wholesale-title-box" style="background-color: #fff; padding: 16px; margin: 2em;display: grid; place-items: center;">
-                            <h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6>
+                            <h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca</h6>
                             <h1 style="font-weight: 700; margin: 0;">'.$title.'</h1>
                         </div>
                     </div>';
