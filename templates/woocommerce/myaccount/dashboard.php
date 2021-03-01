@@ -122,7 +122,6 @@ include('../../../assets/config.php');
     // Capture page url for active-link.
     $page_url = $_SERVER['REQUEST_URI'];
 
-
     // Bring in Plugin code to detect B2BKing.
     include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 

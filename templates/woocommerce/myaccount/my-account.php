@@ -22,18 +22,32 @@
 // Brings in the plugin's constants file.
 include('../../../assets/config.php');
 
+function check_if_we_need_a_back_button($page_url)
+	{
+		// Check if we're on the My Account page, if not, add a back button.
+		if ($page_url == MY_ACCOUNT_SLUG or $page_url == WHOLESALE_DASHBOARD_SLUG)
+			{
+				// Do nothing.
+			}
+		else
+			{
+				return create_back_button();
+			}
+	}
+
+function create_back_button()
+	{
+		// Capture the page before this one.
+		$previous_url = htmlspecialchars($_SERVER['HTTP_REFERER']);
+		
+		echo '<h4 style=\"\"><a style="color: #555;" href="'.$previous_url.'"><i class="fas fa-long-arrow-alt-left"></i> Back</a></h4><br>';
+	}
+
 // Capture page url for active-link.
 $page_url = $_SERVER['REQUEST_URI'];
 
-// Capture the page before this one.
-$previous_url = htmlspecialchars($_SERVER['HTTP_REFERER']);
-
 // If the page *ISN'T* my-account, show the back button
-if (strcmp($page_url, '/'.MY_ACCOUNT_SLUG.'/') !== 0)
-    {
-        echo '<h4 style=\"\"><a style="color: #555;" href="'.$previous_url.'"><i class="fas fa-long-arrow-alt-left"></i> Back</a></h4><br>';
-
-    }
+check_if_we_need_a_back_button($page_url);
 
 
 ?>
