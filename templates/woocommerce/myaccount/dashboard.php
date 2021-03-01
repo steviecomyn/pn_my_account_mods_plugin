@@ -94,7 +94,7 @@ include('../../../assets/config.php');
         {      
             $user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
 
-            if ( $user_is_b2b === 'yes' )
+            if ( $user_is_b2b[0] === 'y' )
                 {
                     return true;
                 }
@@ -122,6 +122,7 @@ include('../../../assets/config.php');
     // Capture page url for active-link.
     $page_url = $_SERVER['REQUEST_URI'];
 
+
     // Bring in Plugin code to detect B2BKing.
     include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
@@ -130,6 +131,7 @@ include('../../../assets/config.php');
     if ( is_plugin_active( 'b2b-plugin/b2bking.php') && is_user_a_b2b_account() )
         {
             $b2b = true;
+            echo "B2B is active & User is a B2B Customer";
         }
 
 ?>
@@ -170,7 +172,7 @@ $allowed_html = array(
     
     if (get_option('pn_acc_custom_page_1_toggle') === 'active')
         {
-            echo create_menu_item('Take a tour of the Features', '/'.MY_ACCOUNT_SLUG.'/feature_tour/');
+            echo create_menu_item('Take a tour of the Features', $page_url.'feature_tour/');
         }
 
 ?>
@@ -183,14 +185,14 @@ $allowed_html = array(
         <?php 
 
             // If b2bking is installed, add extra menu items.
-            if ( $b2b )
+            if ( is_user_a_b2b_account() )
                 {
 
                     // array('Sub-accounts', '/'.MY_ACCOUNT_SLUG.'/?subaccounts')
 
                     $b2b_menu_items = array (
-                        array('Bulk Order', '/'.MY_ACCOUNT_SLUG.'/?bulkorder'),
-                        array('Purchase Lists', '/'.MY_ACCOUNT_SLUG.'/?purchase-lists')
+                        array('Bulk Order', $page_url.'?bulkorder'),
+                        array('Purchase Lists', $page_url.'?purchase-lists')
                     );
 
                     foreach ($b2b_menu_items as $menu_item)
@@ -205,23 +207,23 @@ $allowed_html = array(
 <?php
         if (get_option('pn_acc_custom_page_3_toggle') === 'active')
         {
-            echo create_menu_item('Wishlist', '/'.MY_ACCOUNT_SLUG.'/wishlist/');
+            echo create_menu_item('Wishlist', $page_url.'wishlist/');
         }
 
         if (get_option('pn_acc_custom_page_4_toggle') === 'active')
             {
-                echo create_menu_item('Personalisation', '/'.MY_ACCOUNT_SLUG.'/personalisation/');
+                echo create_menu_item('Personalisation', $page_url.'personalisation/');
             }
 
 ?>
 
-            <a href="/account/orders/" <?php pn_acc_link_is_active($page_url, '/'.MY_ACCOUNT_SLUG.'/orders/'); ?>>
+            <a href="/account/orders/" <?php pn_acc_link_is_active($page_url, $page_url.'orders/'); ?>>
                 <div class="menu-item">
                     <span>Order History</span>
                 </div>
             </a>
 
-            <a href="/account/edit-account/" <?php pn_acc_link_is_active($page_url, '/'.MY_ACCOUNT_SLUG.'/edit-account/') ?>>
+            <a href="/account/edit-account/" <?php pn_acc_link_is_active($page_url, $page_url.'edit-account/') ?>>
                 <div class="menu-item">
                     <span>Account details</span>
                 </div>
@@ -231,7 +233,7 @@ $allowed_html = array(
 
             if (get_option('pn_acc_custom_page_2_toggle') === 'active')
         {
-            echo create_menu_item('FAQs', '/'.MY_ACCOUNT_SLUG.'/faq/');
+            echo create_menu_item('FAQs', $page_url.'faq/');
         }
 ?>
 
