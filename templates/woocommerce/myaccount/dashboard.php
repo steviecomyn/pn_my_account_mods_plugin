@@ -43,7 +43,7 @@ include('../../../assets/config.php');
     // Creates a personalised welcome message.
     function pn_acc_welcome_message($user_name)
         {
-            $html_output = "";
+            $welcome_message = "";
             $welcome_string = "Welcome!"; 
             $numeric_date = date("G");
             
@@ -51,29 +51,27 @@ include('../../../assets/config.php');
             if (empty($user_name))
                 {
                     //Display generic welcome. 
-                    $html_output = "<div style=\"width: 100%; text-align:center;\"><h2>".$welcome_string."</h2><br>";
+                    return $welcome_string;
                 }
             else
                 {
                     //Start conditionals based on military time 
                     if ($numeric_date>=0&&$numeric_date<=11)
                     {
-                        $welcome_string="Good Morning";
+                        $welcome_string = "Good Morning, ";
                     }
                     else if($numeric_date>=12&&$numeric_date<=17) 
                     {
-                        $welcome_string="Good Afternoon"; 
+                        $welcome_string = "Good Afternoon, "; 
                     }
                     else if($numeric_date>=18&&$numeric_date<=23) 
                     {
-                        $welcome_string="Good Evening";
+                        $welcome_string = "Good Evening, ";
                     }
 
                     //Display our greeting 
-                    $html_output = "<div style=\"width: 100%; text-align:center; margin-bottom: 70px;\"><h2><b>".$user_name."</b></h2><a href=\"/".MY_ACCOUNT_SLUG."/customer-logout/\" style=\"color: #000;\"><span>Log out</span></a></div>"; 
+                    return $welcome_message = $welcome_string.$user_name;
                 }
-
-            return $html_output;
         }
 
     // Adds the "active" class to link if on current page.
@@ -125,35 +123,58 @@ include('../../../assets/config.php');
     // Bring in Plugin code to detect B2BKing.
     include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
-    $b2b = false;
-    // If b2bking is installed, add extra menu items.
-    if ( is_plugin_active( 'b2b-plugin/b2bking.php') && is_user_a_b2b_account() )
-        {
-            $b2b = true;
-            echo "B2B is active & User is a B2B Customer";
-        }
-
 ?>
 
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit; // Exit if accessed directly.
+    }
 
-$allowed_html = array(
-	'a' => array(
-		'href' => array(),
-	),
-);
+    $allowed_html = array(
+        'a' => array(
+            'href' => array(),
+        ),
+    );
 ?>
 
 <?php
 
 //============================================================================================================ PAGE_STARTS //
+?>
 
-	echo "<h1 style=\"width: 100%; font-weight: bold; text-align: center; font-size: 3.5em;\">Welcome to your Dashboard</h1>";
-    echo pn_acc_welcome_message($user_name);
+<div id="pn_myacc">
+            <h2 class="brws-page-title">
+<?php
+            if (is_user_a_b2b_account())
+                {
+                    echo "Wholesale Dashboard";
+                }
+            else
+                {
+                    echo "Account Dashboard";
+                }
+?>      
+            </h2>
+            <div class="brws-header-bar">
+                <div class="brws-username" style="display: flex; align-content: center;">
+                    <b>
+                    <?php echo pn_acc_welcome_message($user_name); ?>
+                    </b>
+                </div>
+                
+                <a href="wp-login.php?action=logout" class="brws-logout" style="display: flex; align-content: center;">
+                    <img src="<?php echo plugin_dir_url( __FILE__ ); ?>../../../assets/images/logout.svg" alt="Log out" style="margin-right: 8px;">
+                    <b style="white-space: nowrap;">Log out</b>
+                </a>
+            </div>
+
+            <div class="brws-info-box">
+                <img src="<?php echo plugins_url( '../../../assets/images/info.svg' , __FILE__ ); ?>" alt="Information" width="20" height="20">
+                <p style="margin: 0;">This is your wholesale dashboard, here you can change your account details, like your password, your delivery and billing addresses, and payment details. You can create bulk orders within the bulk order form page, and view your orders in Order History. We also have a Feature Tour and FAQ if you need any help with how to use our wholesale service.</p>
+            </div>
+
+<?php
 
 	if ( is_user_logged_in() ) {
 
@@ -262,6 +283,7 @@ $allowed_html = array(
 	?>
 </p>
 
+</div><!-- Close "#pn_acc"  -->
 <?php
 	/**
 	 * My Account dashboard.

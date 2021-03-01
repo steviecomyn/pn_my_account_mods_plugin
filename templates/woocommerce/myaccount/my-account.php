@@ -35,12 +35,13 @@ function check_if_we_need_a_back_button($page_url)
 			}
 	}
 
+// Create the back button for child pages of My Account.
 function create_back_button()
 	{
 		// Capture the page before this one.
 		$previous_url = htmlspecialchars($_SERVER['HTTP_REFERER']);
 		
-		echo '<h4 style=\"\"><a style="color: #555;" href="'.$previous_url.'"><i class="fas fa-long-arrow-alt-left"></i> Back</a></h4><br>';
+		echo '<h4 style=\"\"><a style="color: #555;" href="'.$previous_url.'"><i class="fas fa-long-arrow-alt-left"></i> Back</a></h4>';
 	}
 
 // Capture page url for active-link.
@@ -48,11 +49,6 @@ $page_url = $_SERVER['REQUEST_URI'];
 
 // If the page *ISN'T* my-account, show the back button
 check_if_we_need_a_back_button($page_url);
-
-
-?>
-
-<?php
 
 
 defined( 'ABSPATH' ) || exit;
@@ -76,12 +72,12 @@ do_action( 'woocommerce_account_navigation' ); ?>
 </div>
 <?php
 
-if (strcmp($page_url, '/'.MY_ACCOUNT_SLUG.'/?bulkorder') == 0)
+if (strcmp($page_url, '/'.MY_ACCOUNT_SLUG.'/?bulkorder') == 0 or strcmp($page_url, '/'.WHOLESALE_DASHBOARD_SLUG.'/?bulkorder'))
 	{
 ?>
 <script>
 var bulk_order_form_wrapper =  document.getElementById("b2bking_myaccount_bulkorder_container");
-var snippet = '<div class="wholesale-title-wrapper" style="width: 100%; background-color: #f5f5f5; display: grid; place-items: center; margin: 32px 0;"><div class="wholesale-title-box" style="background-color: #fff; padding: 16px; margin: 2em;display: grid; place-items: center;"><h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6><h1 style="font-weight: 700; margin: 0;">Bulk Order Form</h1></div></div>';
+var snippet = '<div class="wholesale-title-wrapper" style="width: 100%; background-color: #CCC; display: grid; place-items: center; margin: 32px 0;"><div class="wholesale-title-box" style="background-color: #fff; padding: 16px; margin: 2em;display: grid; place-items: center;"><h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6><h1 style="font-weight: 700; margin: 0;">Bulk Order Form</h1></div></div>';
 
 // Create new div and populate with html.
 var div = document.createElement("div");

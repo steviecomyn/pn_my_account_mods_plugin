@@ -56,7 +56,7 @@ function pm_myacc_enqueue_files() {
     wp_enqueue_style( 'font-awesome' );
 
 	// loads a My Accounts CSS file in the head.
-	wp_register_style( 'myaccount-css', plugin_dir_url( __FILE__ ) . 'assets/css/br-styles.css' );
+	wp_register_style( 'myaccount-css', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
 	wp_enqueue_style( 'myaccount-css' );
 
 }
