@@ -161,3 +161,11 @@
         border: 0 !important;
         padding: 0 !important;
     }
+
+.wholesale-title-wrapper {
+  background-color: pink;
+}
+
+.wholesale-title-box {
+  background-color: #fff;
+}

@@ -29,9 +29,9 @@ include('../../../assets/config.php');
     // Creates a uniform page title.
     function pn_acc_make_page_title($title)
         {
-            $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; background-color: #f5f5f5; display: grid; place-items: center;">
-                        <div class="wholesale-title-box" style="background-color: #fff; padding: 16px; margin: 2em;display: grid; place-items: center;">
-                            <h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6>
+            $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center;">
+                        <div class="wholesale-title-box" style="padding: 16px; margin: 2em;display: grid; place-items: center;">
+                            <h6 style="margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6>
                             <h2 style="font-weight: 700; margin: 0;">'.$title.'</h2>
                         </div>
                     </div>';

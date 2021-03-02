@@ -77,7 +77,7 @@ if (strcmp($page_url, '/'.MY_ACCOUNT_SLUG.'/?bulkorder') == 0 or strcmp($page_ur
 ?>
 <script>
 var bulk_order_form_wrapper =  document.getElementById("b2bking_myaccount_bulkorder_container");
-var snippet = '<div class="wholesale-title-wrapper" style="width: 100%; background-color: #CCC; display: grid; place-items: center; margin: 32px 0;"><div class="wholesale-title-box" style="background-color: #fff; padding: 16px; margin: 2em;display: grid; place-items: center;"><h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6><h1 style="font-weight: 700; margin: 0;">Bulk Order Form</h1></div></div>';
+var snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center; margin: 32px 0;"><div class="wholesale-title-box" style="padding: 16px; margin: 2em;display: grid; place-items: center;"><h6 style="margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6><h1 style="font-weight: 700; margin: 0;">Bulk Order Form</h1></div></div>';
 
 // Create new div and populate with html.
 var div = document.createElement("div");
@@ -102,7 +102,7 @@ var purchase_lists_wrapper =  document.getElementsByClassName("woocommerce-MyAcc
 
 purchase_lists_wrapper.style.background = 'red';
 
-var snippet = '<div class="wholesale-title-wrapper" style="width: 100%; background-color: #f5f5f5; display: grid; place-items: center; margin: 32px 0;"><div class="wholesale-title-box" style="background-color: #fff; padding: 16px; margin: 2em;display: grid; place-items: center;"><h6 style="color: #444; margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6><h1 style="font-weight: 700; margin: 0;">Purchase Lists</h1></div></div>';
+var snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center; margin: 32px 0;"><div class="wholesale-title-box" style="padding: 16px; margin: 2em;display: grid; place-items: center;"><h6 style="margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6><h1 style="font-weight: 700; margin: 0;">Purchase Lists</h1></div></div>';
 
     
 var div = document.createElement("div");
