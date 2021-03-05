@@ -163,7 +163,7 @@ include('../../../assets/config.php');
                     </b>
                 </div>
                 
-                <a href="wp-login.php?action=logout" class="brws-logout" style="display: flex; align-content: center;">
+                <a href="<?php echo wp_logout_url( get_permalink() ); ?>" class="brws-logout" style="display: flex; align-content: center;">
                     <img src="<?php echo plugin_dir_url( __FILE__ ); ?>../../../assets/images/logout.svg" alt="Log out" style="margin-right: 8px;">
                     <b style="white-space: nowrap;">Log out</b>
                 </a>
