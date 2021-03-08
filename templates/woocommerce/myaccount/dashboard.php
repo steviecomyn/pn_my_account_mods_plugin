@@ -237,13 +237,13 @@ include('../../../assets/config.php');
 
 ?>
 
-            <a href="/account/orders/" <?php pn_acc_link_is_active($page_url, $page_url.'orders/'); ?>>
+            <a href="<?php echo esc_url( wc_get_endpoint_url( 'orders' ) ); ?>" <?php pn_acc_link_is_active($page_url, $page_url.'orders/'); ?>>
                 <div class="menu-item">
                     <span>Order History</span>
                 </div>
             </a>
 
-            <a href="/account/edit-account/" <?php pn_acc_link_is_active($page_url, $page_url.'edit-account/') ?>>
+            <a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-account' ) ); ?>" <?php pn_acc_link_is_active($page_url, $page_url.'edit-account/') ?>>
                 <div class="menu-item">
                     <span>Account details</span>
                 </div>
