@@ -94,7 +94,7 @@ old_title.remove();
 
 	}
 
-	if (strcmp($page_url, '/'.MY_ACCOUNT_SLUG.'/?purchase-lists') == 0)
+if (strcmp($page_url, '/'.MY_ACCOUNT_SLUG.'/?purchase-lists') == 0)
 	{
 ?>
 <script>
