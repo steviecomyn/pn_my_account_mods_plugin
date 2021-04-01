@@ -196,7 +196,7 @@ include('../../../assets/config.php');
         }
 
 ?>
-            <a href="https://demo.pagenorth.cloud/shop/" target="_blank">
+            <a href="<?php echo wc_get_page_permalink( 'shop' ); ?>" target="_blank">
                 <div class="menu-item">
                     <span>Browse Products</span>
                 </div>
