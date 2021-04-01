@@ -51,7 +51,7 @@ add_action( 'wp_enqueue_scripts', 'pm_myacc_enqueue_files' );
  */
 function pm_myacc_enqueue_files() {
 
-	// Loads FontAwesome 5.1 from a CDN.
+	// Loads FontAwesome 4.7 from a CDN.
 	wp_register_style( 'font-awesome', FONTAWESOME_CDN );
     wp_enqueue_style( 'font-awesome' );
 
