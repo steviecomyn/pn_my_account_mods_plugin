@@ -3,7 +3,7 @@
 Plugin Name:	0_PageNorth - My Account Customisation
 Plugin URI:		https://www.pagenorth.co.uk
 Description:	Adds customisations to the My Account pages.
-Version:		0.2.1
+Version:		0.2.4
 Author:			PageNorth ltd
 Author URI:		https://www.pagenorth.co.uk
 License:		GPL-2.0+
@@ -34,6 +34,8 @@ include('assets/config.php');
 include('settings-page.php');
 // This code adds the ability to use shortcodes to place Oxygen Reusable Template parts in pages.
 include('oxygen-shortcode.php');
+// This code adds the ability to use shortcodes render the page titles.
+include('title-shortcode.php');
 // This code adds the ability to add new pages to My Account, using the above shortcodes.
 include('custom_page_1.php');
 // This code adds the ability to add new pages to My Account, using the above shortcodes.
@@ -58,6 +60,10 @@ function pm_myacc_enqueue_files() {
 	// loads a My Accounts CSS file in the head.
 	wp_register_style( 'myaccount-css', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
 	wp_enqueue_style( 'myaccount-css' );
+
+	// Loads in the css for the brws tweaks.
+	wp_register_style( 'brws-css', plugin_dir_url( __FILE__ ) . 'assets/css/brws-base-styles.css' );
+	wp_enqueue_style( 'brws-css' );
 
 }
 

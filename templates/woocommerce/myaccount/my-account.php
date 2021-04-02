@@ -72,29 +72,117 @@ do_action( 'woocommerce_account_navigation' ); ?>
 </div>
 <?php
 
-if (strcmp($page_url, '/'.MY_ACCOUNT_SLUG.'/?bulkorder') == 0 or strcmp($page_url, '/'.WHOLESALE_DASHBOARD_SLUG.'/?bulkorder'))
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?bulkorder') == 0)
 	{
 ?>
 <script>
 var bulk_order_form_wrapper =  document.getElementById("b2bking_myaccount_bulkorder_container");
-var snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center; margin: 32px 0;"><div class="wholesale-title-box" style="padding: 16px; margin: 2em;display: grid; place-items: center;"><h6 style="margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6><h1 style="font-weight: 700; margin: 0;">Bulk Order Form</h1></div></div>';
 
+var snippet = '<div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Bulk Order Form</h2></div>';
 // Create new div and populate with html.
 var div = document.createElement("div");
-div.id = "brwc-box";
+div.id = "brws_myacc_page_title_wrapper";
+div.classList.add("brws_myacc_page_title_wrapper");
 bulk_order_form_wrapper.prepend(div);
-var box = document.getElementById("brwc-box");
+var box = document.getElementById("brws_myacc_page_title_wrapper");
 box.innerHTML = snippet;
 
 // Remove old title.
 var old_title = document.getElementById("b2bking_myaccount_bulkorder_title");
 old_title.remove();
 </script>
+<style>
+	.b2bking_bulkorder_form_container, .b2bking_myaccount_bulkorder_container {
+		background-color: #fff;
+		border: 0;
+		box-shadow: none;
+		font-family: 'Quattrocento', serif !important;
+	}
+
+	.b2bking_bulkorder_form_container_top {
+		background-color: #fff;
+		color: #222;
+		display: none;
+	}
+
+	.b2bking_bulkorder_form_container_content {
+		border: 0;
+		box-shadow: none;
+	}
+
+	.b2bking_bulkorder_form_container_content_header_product {
+		color: #222;
+		font-family: 'Quattrocento', serif !important;
+	}
+
+	.b2bking_bulkorder_form_container_content_line {
+		border-bottom: 1px solid #ccc;
+		padding-top: 16px !important;
+	}
+
+	.b2bking_bulkorder_form_container_content_line input {
+		background-color: #f5f5f5 !important;
+		border-radius: 0 !important;
+	}
+
+	select#b2bking_bulkorder_searchby_select {
+		background-color: #fff !important;
+		color: #222;
+		border-radius: 0;
+		box-shadow: none;
+		font-family: 'Quattrocento', serif !important;
+	}
+
+	.b2bking_bulkorder_form_container_newline_container {
+		margin-top: 16px !important;
+	}
+
+	.b2bking_bulkorder_form_container_newline_container button {
+		background-color: #939393 !important;
+		border: 1px solid #222;
+		color: #fff !important;
+		box-shadow: none !important;
+		border-radius: 0 !important;
+		font-size: 16px !important;
+		padding: 16px 32px !important;
+		font-family: 'Quattrocento', serif !important;
+	}
+
+	.b2bking_bulkorder_form_container_newline_container button:hover {
+		background-color: #666 !important;
+	}
+
+	button.b2bking_bulkorder_form_container_bottom_add_button {
+		border-radius: 0 !important;
+		background-color: #000 !important;
+		font-family: 'Quattrocento', serif !important;
+	}
+
+	button.b2bking_bulkorder_form_container_bottom_add_button:hover {
+		background-color: #333 !important;
+	}
+
+	button.b2bking_bulkorder_form_container_bottom_save_button {
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		font-family: 'Quattrocento', serif !important;
+	}
+
+	.b2bking_bulkorder_form_container_bottom_total, .b2bking_bulkorder_form_container_bottom_total strong span bdi {
+		font-size: 24px !important;
+		font-family: 'Quattrocento', serif !important;
+	}
+
+	.b2bking_bulkorder_clear {
+		margin-top: 16px !important;
+	}
+
+</style>
 <?php
 
 	}
 
-if (strcmp($page_url, '/'.MY_ACCOUNT_SLUG.'/?purchase-lists') == 0)
+if (strcmp($page_url, MY_ACCOUNT_SLUG.'?purchase-lists') == 0 or strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists'))
 	{
 ?>
 <script>
@@ -102,7 +190,7 @@ var purchase_lists_wrapper =  document.getElementsByClassName("woocommerce-MyAcc
 
 purchase_lists_wrapper.style.background = 'red';
 
-var snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center; margin: 32px 0;"><div class="wholesale-title-box" style="padding: 16px; margin: 2em;display: grid; place-items: center;"><h6 style="margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6><h1 style="font-weight: 700; margin: 0;">Purchase Lists</h1></div></div>';
+var snippet = '<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Purchase Lists</h2></div></div>';
 
     
 var div = document.createElement("div");

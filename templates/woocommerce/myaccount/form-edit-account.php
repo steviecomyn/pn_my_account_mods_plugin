@@ -24,15 +24,9 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
     // Creates a uniform page title.
     function pn_acc_make_page_title($title)
         {
-            $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center; margin: 32px 0;">
-                        <div class="wholesale-title-box" style=" padding: 16px; margin: 2em;display: grid; place-items: center;">
-                            <h6 style=" margin: 0; padding-bottom: 10px;">By Rebecca</h6>
-                            <h1 style="font-weight: 700; margin: 0;">'.$title.'</h1>
-                        </div>
-                    </div>';
+			$snippet = '<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>'.$title.'</h2></div></div>';
 
             return $snippet;
-
         }
 
 	echo pn_acc_make_page_title('Account Details');
@@ -95,11 +89,12 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 	<?php do_action( 'woocommerce_edit_account_form_end' ); ?>
 </form>
 
-<?php do_action( 'woocommerce_after_edit_account_form' ); ?>
+<?php do_action( 'woocommerce_after_edit_account_form' );
 
-<br><hr><br><h3>Addresses</h3>
+echo "<br><br><hr>";
 
-<?php
+echo pn_acc_make_page_title('Edit Addresses');
+
 /**
  * Edit address form
  *
@@ -154,11 +149,10 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 
 <?php endif; ?>
 
-<?php do_action( 'woocommerce_after_edit_account_address_form' ); ?>
+<?php do_action( 'woocommerce_after_edit_account_address_form' );
 
-<br><hr><br><h3>Payment Methods</h3><br>
-
-<?php
+echo "<hr>";
+echo pn_acc_make_page_title('Payment Methods');
 /**
  * Payment methods
  *

@@ -53,6 +53,4 @@ function pn_acc_feature_tour_content()
     {
         // Use the given id to create the page shortcode.
         $shortcode = '[oxygen-template id="'.get_option('pn_acc_custom_page_1_post_id').'"]';
-
-        echo do_shortcode( $shortcode );
     }

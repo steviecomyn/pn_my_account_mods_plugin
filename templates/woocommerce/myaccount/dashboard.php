@@ -169,12 +169,18 @@ include('../../../assets/config.php');
                 </a>
             </div>
 
+<?php
+            // If b2bking is installed, add extra menu items.
+            if ( is_user_a_b2b_account() )
+                {
+?>
             <div class="brws-info-box">
                 <img src="<?php echo plugins_url( '../../../assets/images/info.svg' , __FILE__ ); ?>" alt="Information" width="20" height="20">
                 <p style="margin: 0;">This is your wholesale dashboard, here you can change your account details, like your <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">password</a>, your <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">delivery and billing addresses</a>, and <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">payment details</a>. You can create bulk orders within the bulk order form page, and view your orders in <a href="<?php echo wc_get_endpoint_url( 'orders' ); ?>">Order History</a>. We also have a Feature Tour and FAQ if you need any help with how to use our wholesale service.</p>
             </div>
 
 <?php
+                } // closes the b2b check.
 
 	if ( is_user_logged_in() ) {
 

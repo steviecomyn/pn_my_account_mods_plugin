@@ -5,6 +5,7 @@
 #pn_myacc .brws-header-bar {
   background-color: #ccc;
   padding: 1em;
+  margin-bottom: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,7 +37,7 @@
 #pn_myacc .brws-info-box {
   background-color: #fff;
   padding: 1em;
-  margin: 1em auto;
+  margin-bottom: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
