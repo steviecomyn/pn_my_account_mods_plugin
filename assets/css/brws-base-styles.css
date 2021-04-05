@@ -17,6 +17,7 @@
     position: relative;
     margin: 0;
     text-transform: uppercase;
+    text-align: center;
   }
   
   .brws_myacc_page_title_wrapper .brws_mycc_page_title_box h2:after {

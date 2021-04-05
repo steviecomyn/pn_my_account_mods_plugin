@@ -75,22 +75,16 @@ do_action( 'woocommerce_account_navigation' ); ?>
 if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?bulkorder') == 0)
 	{
 ?>
+
 <script>
-var bulk_order_form_wrapper =  document.getElementById("b2bking_myaccount_bulkorder_container");
+jQuery(document).ready(function($)
+	{
+		$('#b2bking_myaccount_bulkorder_container').prepend('<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Bulk Order Form</h2></div></div>');
 
-var snippet = '<div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Bulk Order Form</h2></div>';
-// Create new div and populate with html.
-var div = document.createElement("div");
-div.id = "brws_myacc_page_title_wrapper";
-div.classList.add("brws_myacc_page_title_wrapper");
-bulk_order_form_wrapper.prepend(div);
-var box = document.getElementById("brws_myacc_page_title_wrapper");
-box.innerHTML = snippet;
-
-// Remove old title.
-var old_title = document.getElementById("b2bking_myaccount_bulkorder_title");
-old_title.remove();
+		$('#b2bking_myaccount_bulkorder_title').empty();
+	});
 </script>
+
 <style>
 	.b2bking_bulkorder_form_container, .b2bking_myaccount_bulkorder_container {
 		background-color: #fff;
@@ -179,30 +173,30 @@ old_title.remove();
 
 </style>
 <?php
-
 	}
 
-if (strcmp($page_url, MY_ACCOUNT_SLUG.'?purchase-lists') == 0 or strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists'))
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists') == 0)
 	{
 ?>
 <script>
-var purchase_lists_wrapper =  document.getElementsByClassName("woocommerce-MyAccount-content");
+jQuery(document).ready(function($)
+	{
+		$('.woocommerce-MyAccount-content').prepend('<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Purchase Lists</h2></div></div>');
 
-purchase_lists_wrapper.style.background = 'red';
-
-var snippet = '<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Purchase Lists</h2></div></div>';
-
-    
-var div = document.createElement("div");
-div.innerHTML = snippet;
-
-purchase_lists_wrapper.prepend(div);
-
-var old_title = document.getElementsByClassName("b2bking_purchase_lists_top_title");
-old_title.remove();
+		$('.b2bking_purchase_lists_top_title').empty();
+	});
 </script>
+
+<style>
+#b2bking_purchase_list_new_button {
+	background-color: #000 !important;
+	border-radius: 0 !important;
+}
+
+#b2bking_purchase_list_new_button:hover {
+	background-color: #333;
+}
+</style>
 <?php
-
 	}
-
 ?>
