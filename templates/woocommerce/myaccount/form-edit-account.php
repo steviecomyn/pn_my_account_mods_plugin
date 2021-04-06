@@ -21,10 +21,32 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 
 <?php
 
+	// Checks if a user is a b2b customer or not
+	function is_user_a_b2b_account()
+        {      
+            $user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
+
+            if ( $user_is_b2b[0] === 'y' )
+                {
+                    return true;
+                }
+            else
+                {
+                    return false;
+                }
+        }
+
     // Creates a uniform page title.
     function pn_acc_make_page_title($title)
         {
-			$snippet = '<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>'.$title.'</h2></div></div>';
+			$subtitle = "By Rebecca";
+			
+			if (is_user_a_b2b_account())
+                {
+                    $subtitle = "By Rebecca Wholesale";
+                }
+			
+			$snippet = '<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>'.$subtitle.'</h4><h2>'.$title.'</h2></div></div>';
 
             return $snippet;
         }

@@ -27,18 +27,16 @@ include('../../../assets/config.php');
 //============================================================================================================ PN_ACC_MODS //
 
     // Creates a uniform page title.
-    function pn_acc_make_page_title($title)
-        {
-            $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center;">
-                        <div class="wholesale-title-box" style="padding: 16px; margin: 2em;display: grid; place-items: center;">
-                            <h6 style="margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6>
-                            <h2 style="font-weight: 700; margin: 0;">'.$title.'</h2>
-                        </div>
-                    </div>';
-
-            return $snippet;
-
-        }
+    // function pn_acc_make_page_title($title)
+    //     {
+    //         $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center;">
+    //                     <div class="wholesale-title-box" style="padding: 16px; margin: 2em;display: grid; place-items: center;">
+    //                         <h6 style="margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6>
+    //                         <h2 style="font-weight: 700; margin: 0;">'.$title.'</h2>
+    //                     </div>
+    //                 </div>';
+    //         return $snippet;
+    //     }
 
     // Creates a personalised welcome message.
     function pn_acc_welcome_message($user_name)
@@ -180,7 +178,19 @@ include('../../../assets/config.php');
             </div>
 
 <?php
-                } // closes the b2b check.
+                } // closes the B2B check.
+            else
+                { // Starts B2C.
+?>
+            <div class="brws-info-box">
+                <img src="<?php echo plugins_url( '../../../assets/images/info.svg' , __FILE__ ); ?>" alt="Information" width="20" height="20">
+                <p style="margin: 0;">This is your account dashboard, here you can change your account details, like your <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">password</a>, your <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">delivery and billing addresses</a>, and <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">payment details</a>. You can view your previous orders in <a href="<?php echo wc_get_endpoint_url( 'orders' ); ?>">Order History</a>.</p>
+            </div>
+
+<?php
+                }
+            
+            
 
 	if ( is_user_logged_in() ) {
 
@@ -196,7 +206,7 @@ include('../../../assets/config.php');
 
 <?php
     
-    if (get_option('pn_acc_custom_page_1_toggle') === 'active')
+    if (get_option('pn_acc_custom_page_1_toggle') === 'active' AND is_user_a_b2b_account())
         {
             echo create_menu_item('Take a tour of the Features', $page_url.'feature_tour/');
         }
@@ -231,12 +241,12 @@ include('../../../assets/config.php');
         ?>
 
 <?php
-        if (get_option('pn_acc_custom_page_3_toggle') === 'active')
+        if (get_option('pn_acc_custom_page_3_toggle') === 'active' AND is_user_a_b2b_account())
         {
             echo create_menu_item('Wishlist', $page_url.'wishlist/');
         }
 
-        if (get_option('pn_acc_custom_page_4_toggle') === 'active')
+        if (get_option('pn_acc_custom_page_4_toggle') === 'active' AND is_user_a_b2b_account())
             {
                 echo create_menu_item('Personalisation', $page_url.'personalisation/');
             }
@@ -257,7 +267,7 @@ include('../../../assets/config.php');
 
 <?php
 
-            if (get_option('pn_acc_custom_page_2_toggle') === 'active')
+            if (get_option('pn_acc_custom_page_2_toggle') === 'active' AND is_user_a_b2b_account())
         {
             echo create_menu_item('FAQs', $page_url.'faq/');
         }

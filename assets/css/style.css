@@ -32,6 +32,13 @@
   text-decoration: none;
   color: #222;
   white-space: nowrap;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+#pn_myacc .brws-header-bar .brws-logout:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 #pn_myacc .brws-info-box {
