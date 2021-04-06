@@ -72,7 +72,7 @@ do_action( 'woocommerce_account_navigation' ); ?>
 </div>
 <?php
 
-if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?bulkorder') == 0)
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?bulkorder') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'bulkorder/') == 0)
 	{
 ?>
 
@@ -132,34 +132,54 @@ jQuery(document).ready(function($)
 	}
 
 	.b2bking_bulkorder_form_container_newline_container button {
-		background-color: #939393 !important;
+		background-color: #fff !important;
 		border: 1px solid #222;
-		color: #fff !important;
+		color: #222 !important;
 		box-shadow: none !important;
 		border-radius: 0 !important;
 		font-size: 16px !important;
 		padding: 16px 32px !important;
 		font-family: 'Quattrocento', serif !important;
+		text-transform: uppercase;
+	}
+
+	.b2bking_bulkorder_form_container_newline_button svg path {
+		fill: #222 !important;
 	}
 
 	.b2bking_bulkorder_form_container_newline_container button:hover {
-		background-color: #666 !important;
+		background-color: #aaa !important;
+		color: #fff !important;
+	}
+
+	.b2bking_bulkorder_form_container_newline_container button:hover svg path {
+		fill: #fff !important;
 	}
 
 	button.b2bking_bulkorder_form_container_bottom_add_button {
 		border-radius: 0 !important;
-		background-color: #000 !important;
+		background-color: #222 !important;
 		font-family: 'Quattrocento', serif !important;
 	}
 
 	button.b2bking_bulkorder_form_container_bottom_add_button:hover {
-		background-color: #333 !important;
+		background-color: #353535 !important;
 	}
 
 	button.b2bking_bulkorder_form_container_bottom_save_button {
 		border-radius: 0 !important;
 		box-shadow: none !important;
 		font-family: 'Quattrocento', serif !important;
+		background: #222 !important;
+		color: #fff !important;
+	}
+
+	button.b2bking_bulkorder_form_container_bottom_save_button:hover {
+		background: #353535;
+	}
+
+	button.b2bking_bulkorder_form_container_bottom_save_button svg path {
+		fill: #fff !important;
 	}
 
 	.b2bking_bulkorder_form_container_bottom_total, .b2bking_bulkorder_form_container_bottom_total strong span bdi {
@@ -171,11 +191,15 @@ jQuery(document).ready(function($)
 		margin-top: 16px !important;
 	}
 
+	.b2bking_bulkorder_form_container_content_line_product {
+		color: #222 !important;
+	}
+
 </style>
 <?php
 	}
 
-if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists') == 0)
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'purchase-lists/') == 0)
 	{
 ?>
 <script>
@@ -189,14 +213,49 @@ jQuery(document).ready(function($)
 
 <style>
 #b2bking_purchase_list_new_button {
-	background-color: #000 !important;
+	background-color: #222 !important;
 	border-radius: 0 !important;
+	text-transform: uppercase !important;
 }
 
 #b2bking_purchase_list_new_button:hover {
-	background-color: #333;
+	background-color: #353535;
 }
+
+button.b2bking_purchase_lists_view_list {
+	background: #222 !important;
+	padding: 10px 40px !important;
+	border-radius: 0 !important;
+	text-transform: uppercase !important;
+}
+
+button.b2bking_purchase_lists_view_list:hover {
+	background: #353535 !important;
+}
+
 </style>
+<?php
+	}
+
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'edit-account/') == 0)
+	{
+?>
+<style>
+form.woocommerce-EditAccountForm.edit-account, .u-columns.woocommerce-Addresses.col2-set.addresses {
+	padding: 1em !important;
+}
+
+div.addresses {
+	padding-bottom: 2em;
+}
+
+.woocommerce-MyAccount-content > .button {
+	background-color: #000 !important;
+	color: #fff !important;
+}
+
+</style>
+
 <?php
 	}
 ?>

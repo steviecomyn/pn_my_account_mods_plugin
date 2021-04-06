@@ -33,8 +33,6 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 
 ?>
 
-<!-- <br><h3>Account Details</h3><br> -->
-
 <form class="woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action( 'woocommerce_edit_account_form_tag' ); ?> >
 
 	<?php do_action( 'woocommerce_edit_account_form_start' ); ?>
@@ -90,8 +88,6 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 </form>
 
 <?php do_action( 'woocommerce_after_edit_account_form' );
-
-echo "<br><br><hr>";
 
 echo pn_acc_make_page_title('Edit Addresses');
 
@@ -151,7 +147,6 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 
 <?php do_action( 'woocommerce_after_edit_account_address_form' );
 
-echo "<hr>";
 echo pn_acc_make_page_title('Payment Methods');
 /**
  * Payment methods

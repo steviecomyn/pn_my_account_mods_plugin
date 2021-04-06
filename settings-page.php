@@ -239,9 +239,11 @@ function pn_acc_custom_page_1_post_id_render()
 		);
 
 		// Show a link to edit the given page.
-		$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
-		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
-		
+		if ($post_id !== 0)
+			{
+				$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
+				printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+			}
 	}
 
 // This renders the toggle switch to activate/deactive the first custom page.
@@ -288,9 +290,11 @@ function pn_acc_custom_page_2_post_id_render()
 		);
 
 		// Show a link to edit the given page.
-		$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
-		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
-		
+		if ($post_id !== 0)
+			{
+				$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
+				printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+			}
 	}
 
 
@@ -338,9 +342,11 @@ function pn_acc_custom_page_3_post_id_render()
 		);
 
 		// Show a link to edit the given page.
-		$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
-		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
-		
+		if ($post_id !== 0)
+			{
+				$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
+				printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+			}
 	}
 
 // This renders the toggle switch to activate/deactive the first custom page.
@@ -387,7 +393,9 @@ function pn_acc_custom_page_4_post_id_render()
 		);
 
 		// Show a link to edit the given page.
-		$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
-		printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
-		
+		if ($post_id !== 0)
+			{
+				$url = '/wp-admin/post.php?post='.$post_id.'&action=edit';
+				printf('This is the Post ID of the Oxygen Reusable Part, <p class="description"><a href="'.$url.'">Click Here</a> to edit this page.</p>');
+			}
 	}
