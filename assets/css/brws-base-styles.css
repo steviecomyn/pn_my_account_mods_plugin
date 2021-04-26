@@ -4,12 +4,12 @@
     display: grid;
     place-items: center;
     margin: 32px 0;
-    padding: 48px 16px 68px 16px;
+    padding: 0px 16px 68px 16px;
   }
   
   .brws_myacc_page_title_wrapper .brws_mycc_page_title_box h4 {
     text-align: center;
-    margin: 0 0 16px 0;
+    margin: 0 0 8px 0;
     color: #454545;
   }
   

@@ -3,7 +3,7 @@
 Plugin Name:	0_PageNorth - My Account Customisation
 Plugin URI:		https://www.pagenorth.co.uk
 Description:	Adds customisations to the My Account pages.
-Version:		0.2.5
+Version:		0.2.7
 Author:			PageNorth ltd
 Author URI:		https://www.pagenorth.co.uk
 License:		GPL-2.0+
@@ -92,3 +92,15 @@ function pn_acc_intercept_wc_template( $template, $template_name, $template_path
 
 	return $template;
 }
+// This picks up logged in users and redirects them to the "My Account" page when visiting the wholesale page.
+function add_b2c_login_check()
+{
+
+	if ( is_user_logged_in() && is_page(WHOLESALE_PAGE_ID) ) {
+		
+		wp_redirect('https://byrebecca.pagenorth.dev/account/');
+        exit;
+    }
+}
+
+add_action('wp', 'add_b2c_login_check');
