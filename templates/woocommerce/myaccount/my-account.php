@@ -264,6 +264,21 @@ div.addresses {
 
 <?php
 	}
+
+	if (strcmp($page_url, MY_ACCOUNT_SLUG.'?offers') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'offers/') == 0)
+	{
+?>
+<script>
+jQuery(document).ready(function($)
+	{
+		$('.woocommerce-MyAccount-content').prepend('<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Offers</h2></div></div>');
+
+		$('#b2bking_myaccount_offers_title').empty();
+	});
+</script>
+<?php
+
+}
 ?>
 <style>
 	/* MailChimp Form Embed Code - Horizontal Super Slim - 12/16/2015 v10.7
