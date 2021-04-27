@@ -33,14 +33,14 @@
     display: block;
   }
 
-  .brws_back_btn > i {
+  .brws_back_btn > a > i {
     -webkit-transition: transform 0.5s ease-out;
     -webkit-transition: -webkit-transform 0.5s ease-out;
     transition: -webkit-transform 0.5s ease-out;
     transition: transform 0.5s ease-out;
   }
 
-  .brws_back_btn:hover > i {
+  .brws_back_btn > a:hover > i {
     -webkit-transform: translateX(-8px);
     transform: translateX(-8px);
   }

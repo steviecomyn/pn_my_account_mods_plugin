@@ -41,7 +41,7 @@ function create_back_button()
 		// Capture the page before this one.
 		$previous_url = htmlspecialchars($_SERVER['HTTP_REFERER']);
 		
-		echo '<h4 class=\"brws_back_btn\"><a style="color: #555;" href="'.$previous_url.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
+		echo '<h4 class="brws_back_btn"><a style="color: #555;" href="'.$previous_url.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
 	}
 
 // Capture page url for active-link.
