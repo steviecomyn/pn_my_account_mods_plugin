@@ -276,6 +276,24 @@ jQuery(document).ready(function($)
 		$('#b2bking_myaccount_offers_title').empty();
 	});
 </script>
+<style>
+	.b2bking_myaccount_individual_offer_container {
+		background: #fff;
+		border-radius: 0;
+        box-shadow: none;
+	}
+
+	.b2bking_myaccount_individual_offer_top {
+		background: #fff;
+		color: #222;
+		border-radius: 0;
+		font-family: 'Quattrocento', serif !important;
+	}
+
+	.b2bking_myaccount_individual_offer_header_line {
+		border-bottom: 0;
+	}
+</style>
 <?php
 
 }
