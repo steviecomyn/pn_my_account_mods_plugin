@@ -18,6 +18,8 @@
     margin: 0;
     text-transform: uppercase;
     text-align: center;
+    font-weight: bold;
+    font-size: 32px;
   }
   
   .brws_myacc_page_title_wrapper .brws_mycc_page_title_box h2:after {
@@ -29,4 +31,16 @@
     height: 2px;
     background: #222;
     display: block;
+  }
+
+  .brws_back_btn > i {
+    -webkit-transition: transform 0.5s ease-out;
+    -webkit-transition: -webkit-transform 0.5s ease-out;
+    transition: -webkit-transform 0.5s ease-out;
+    transition: transform 0.5s ease-out;
+  }
+
+  .brws_back_btn:hover > i {
+    -webkit-transform: translateX(-8px);
+    transform: translateX(-8px);
   }

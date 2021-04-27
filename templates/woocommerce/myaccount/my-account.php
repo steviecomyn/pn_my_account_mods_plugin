@@ -41,7 +41,7 @@ function create_back_button()
 		// Capture the page before this one.
 		$previous_url = htmlspecialchars($_SERVER['HTTP_REFERER']);
 		
-		echo '<h4 style=\"\"><a style="color: #555;" href="'.$previous_url.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
+		echo '<h4 class=\"brws_back_btn\"><a style="color: #555;" href="'.$previous_url.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
 	}
 
 // Capture page url for active-link.
@@ -72,7 +72,7 @@ do_action( 'woocommerce_account_navigation' ); ?>
 </div>
 <?php
 
-if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?bulkorder') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'bulkorder/') == 0)
+if (strcmp($page_url, MY_ACCOUNT_SLUG.'?bulkorder') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'bulkorder/') == 0)
 	{
 ?>
 
@@ -199,7 +199,7 @@ jQuery(document).ready(function($)
 <?php
 	}
 
-if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'purchase-lists/') == 0)
+if (strcmp($page_url, MY_ACCOUNT_SLUG.'?purchase-lists') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'purchase-lists/') == 0)
 	{
 ?>
 <script>
@@ -243,7 +243,7 @@ button.b2bking_purchase_lists_view_list:hover {
 <?php
 	}
 
-if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'edit-account/') == 0)
+if (strcmp($page_url, MY_ACCOUNT_SLUG.'edit-account/') == 0)
 	{
 ?>
 <style>
