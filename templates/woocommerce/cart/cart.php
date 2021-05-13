@@ -27,7 +27,7 @@ if ( function_exists( 'add_image_size' ) ) {
 
 <style>
 .woocommerce-cart table.cart img {
-    max-width: 200px;
+    max-width: 200px !important;
 	max-height: 200px;
 	border-radius: 4px;
 }
