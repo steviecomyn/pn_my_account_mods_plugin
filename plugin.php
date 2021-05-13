@@ -3,7 +3,7 @@
 Plugin Name:	0_PageNorth - My Account Customisation
 Plugin URI:		https://www.pagenorth.co.uk
 Description:	Adds customisations to the My Account pages.
-Version:		0.2.7
+Version:		0.2.9
 Author:			PageNorth ltd
 Author URI:		https://www.pagenorth.co.uk
 License:		GPL-2.0+
@@ -88,19 +88,30 @@ function pn_acc_intercept_wc_template( $template, $template_name, $template_path
 		$template = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'templates/woocommerce/myaccount/orders.php';
 	} elseif ( 'my-account.php' === basename( $template ) ) {
 		$template = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'templates/woocommerce/myaccount/my-account.php';
+	} elseif ( 'cart.php' === basename( $template ) ) {
+		$template = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'templates/woocommerce/cart/cart.php';
+	} elseif ( 'proceed-to-checkout-button.php' === basename( $template ) ) {
+		$template = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'templates/woocommerce/cart/proceed-to-checkout-button.php';
+	} elseif ( 'cart-totals.php' === basename( $template ) ) {
+		$template = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'templates/woocommerce/cart/cart-totals.php';
 	}
 
 	return $template;
 }
 // This picks up logged in users and redirects them to the "My Account" page when visiting the wholesale page.
-function add_b2c_login_check()
-{
+// function add_b2c_login_check()
+// {
 
-	if ( is_user_logged_in() && is_page(WHOLESALE_PAGE_ID) ) {
+// 	if ( is_user_logged_in() && is_page(WHOLESALE_PAGE_ID) ) {
 		
-		wp_redirect('https://byrebecca.pagenorth.dev/account/');
-        exit;
-    }
-}
+// 		wp_redirect('https://byrebecca.pagenorth.dev/account/');
+//         exit;
+//     }
+// }
 
-add_action('wp', 'add_b2c_login_check');
+// add_action('wp', 'add_b2c_login_check');
+
+// This adds support for custom thumbnail sizes, required for the cart page.
+add_theme_support( 'post-thumbnails' );
+
+add_image_size( 'brws-cart-thumb', 180, 180 );
