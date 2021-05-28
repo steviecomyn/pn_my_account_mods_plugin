@@ -48,7 +48,48 @@ if ( function_exists( 'add_image_size' ) ) {
 	margin-right: 10px;
 }
 
+
+span.woocommerce-Price-amount .amount {
+	float: right;
+}
+
 </style>
+
+<?php
+
+// Checks if a user is a b2b customer or not
+    function is_user_a_b2b_account()
+        {      
+            $user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
+
+            if ( $user_is_b2b[0] === 'y' )
+                {
+                    return true;
+                }
+            else
+                {
+                    return false;
+                }
+        }
+
+		// If user is b2b, hide the coupon code input.
+		if (is_user_a_b2b_account())
+                {
+                    ?>
+
+					<style>
+
+					div.coupon {
+						display: none !important;
+					}
+
+					</style>
+
+
+					<?php
+                }
+
+?>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>

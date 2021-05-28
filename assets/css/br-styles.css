@@ -123,3 +123,15 @@ display: none;
 	border: 0 !important;
 	padding: 0 !important;
 }
+
+#pn_myacc .menu-items-wrapper .menu-item {
+    background: #fff;
+    color: #242424;
+    padding: 6em 2em;
+    border: 1px solid #e5e5e5;
+}
+
+#pn_myacc .menu-items-wrapper .menu-item:hover {
+    background: #fafafa;
+    border: 1px solid #fafafa;
+}

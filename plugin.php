@@ -3,7 +3,7 @@
 Plugin Name:	0_PageNorth - My Account Customisation
 Plugin URI:		https://www.pagenorth.co.uk
 Description:	Adds customisations to the My Account pages.
-Version:		0.2.9
+Version:		0.3.3
 Author:			PageNorth ltd
 Author URI:		https://www.pagenorth.co.uk
 License:		GPL-2.0+
@@ -99,19 +99,73 @@ function pn_acc_intercept_wc_template( $template, $template_name, $template_path
 	return $template;
 }
 // This picks up logged in users and redirects them to the "My Account" page when visiting the wholesale page.
-function add_b2c_login_check()
-{
+// function add_b2c_login_check()
+// {
 
-	if ( is_user_logged_in() && is_page(WHOLESALE_PAGE_ID) ) {
+// 	if ( is_user_logged_in() && is_page(WHOLESALE_PAGE_ID) ) {
 		
-		wp_redirect('https://byrebecca.pagenorth.dev/account/');
-        exit;
-    }
-}
+// 		wp_redirect('https://byrebecca.pagenorth.dev/account/');
+//         exit;
+//     }
+// }
 
-add_action('wp', 'add_b2c_login_check');
+// add_action('wp', 'add_b2c_login_check');
 
 // This adds support for custom thumbnail sizes, required for the cart page.
 add_theme_support( 'post-thumbnails' );
 
 add_image_size( 'brws-cart-thumb', 180, 180 );
+
+// Adds a disclaimer at checkout, if you spend over £500 you get free shipping.
+
+/**
+ * @snippet       $$$ remaining to Free Shipping @ WooCommerce Cart
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 3.9
+ */
+ 
+add_action( 'woocommerce_before_cart', 'bbloomer_free_shipping_cart_notice' );
+  
+function bbloomer_free_shipping_cart_notice() {
+  
+   $min_amount = 500; //change this to your free shipping threshold
+
+   $user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
+   
+   $current = WC()->cart->subtotal;
+
+   // If this is a wholesale order.
+    if ( $user_is_b2b[0] === 'y' )
+    {
+		// Remind them of the £500 order free shipping.
+		if ( $current < $min_amount ) {
+			$added_text = 'Get free shipping if you order ' . wc_price( $min_amount - $current ) . ' more!';
+			$return_to = wc_get_page_permalink( 'shop' );
+			$notice = sprintf( '<a href="%s" class="button wc-forward">%s</a> %s', esc_url( $return_to ), 'Continue Shopping', $added_text );
+			wc_print_notice( $notice, 'notice' );
+		}
+
+	}
+  
+}
+
+
+// // Hide coupon codes from Wholesalers.
+// function woo_get_user_role() {
+// 	global $current_user;
+// 	$user_roles = $current_user->roles;
+// 	$user_role = array_shift($user_roles);
+// 	return $user_role;
+//   }
+  
+  // hide coupon field on cart page for wholesale
+  function hide_coupon_field_on_cart( $enabled ) {
+
+	$user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
+
+	if ( $user_is_b2b[0] === 'y' ) {
+	  $enabled = false;
+	}
+	return $enabled;
+  }
+  add_filter( 'woocommerce_coupons_enabled', 'hide_coupon_field_on_cart' );

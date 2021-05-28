@@ -76,9 +76,10 @@
 }
 
 #pn_myacc .menu-items-wrapper .menu-item {
-  padding: 2em;
-  background-color: #424242;
-  color: #fff;
+  background: #fff;
+  color: #242424;
+  padding: 6em 2em;
+  border: 1px solid #e5e5e5;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -96,15 +97,13 @@
   transition: all .2s ease-in-out;
   border-radius: 2px;
   cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 #pn_myacc .menu-items-wrapper .menu-item:hover {
-  background-color: #242424;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
-  -webkit-box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.4);
+  background: #fafafa;
+  border: 1px solid #fafafa;
 }
 
 #pn_myacc .menu-items-wrapper .menu-item i {

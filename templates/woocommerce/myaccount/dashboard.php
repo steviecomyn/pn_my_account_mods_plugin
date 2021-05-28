@@ -212,7 +212,8 @@ include('../../../assets/config.php');
         }
 
 ?>
-            <a href="<?php echo wc_get_page_permalink( 'shop' ); ?>" target="_blank">
+            <a href="<?php echo get_site_url(); ?>/product-category/wholesale/" target="_blank">
+            <!-- <a href="<?php echo wc_get_page_permalink( 'shop' ); ?>" target="_blank"> -->
                 <div class="menu-item">
                     <span>Browse Products</span>
                 </div>
@@ -228,7 +229,8 @@ include('../../../assets/config.php');
 
                     $b2b_menu_items = array (
                         array('Bulk Order', $page_url.'?bulkorder'),
-                        array('Purchase Lists', $page_url.'?purchase-lists')
+                        array('Purchase Lists', $page_url.'?purchase-lists'),
+                        array('Wholesale Kits', $page_url.'?offers')
                     );
 
                     foreach ($b2b_menu_items as $menu_item)

@@ -25,7 +25,7 @@ include('../../../assets/config.php');
 function check_if_we_need_a_back_button($page_url)
 	{
 		// Check if we're on the My Account page, if not, add a back button.
-		if ($page_url == MY_ACCOUNT_SLUG or $page_url == WHOLESALE_DASHBOARD_SLUG)
+		if ($page_url == WHOLESALE_DASHBOARD_SLUG or $page_url == WHOLESALE_DASHBOARD_SLUG)
 			{
 				// Do nothing.
 			}
@@ -40,8 +40,9 @@ function create_back_button()
 	{
 		// Capture the page before this one.
 		$previous_url = htmlspecialchars($_SERVER['HTTP_REFERER']);
+		$wholesale_home = get_site_url(null, '/wholesale/', 'https');
 		
-		echo '<h4 class="brws_back_btn"><a style="color: #555;" href="'.$previous_url.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
+		echo '<h4 class="brws_back_btn"><a style="color: #555;" href="'.$wholesale_home.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
 	}
 
 // Capture page url for active-link.
@@ -72,7 +73,7 @@ do_action( 'woocommerce_account_navigation' ); ?>
 </div>
 <?php
 
-if (strcmp($page_url, MY_ACCOUNT_SLUG.'?bulkorder') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'bulkorder/') == 0)
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?bulkorder') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'bulkorder/') == 0)
 	{
 ?>
 
@@ -199,7 +200,7 @@ jQuery(document).ready(function($)
 <?php
 	}
 
-if (strcmp($page_url, MY_ACCOUNT_SLUG.'?purchase-lists') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'purchase-lists/') == 0)
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'purchase-lists/') == 0)
 	{
 ?>
 <script>
@@ -243,7 +244,7 @@ button.b2bking_purchase_lists_view_list:hover {
 <?php
 	}
 
-if (strcmp($page_url, MY_ACCOUNT_SLUG.'edit-account/') == 0)
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'edit-account/') == 0)
 	{
 ?>
 <style>
@@ -265,13 +266,13 @@ div.addresses {
 <?php
 	}
 
-	if (strcmp($page_url, MY_ACCOUNT_SLUG.'?offers') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'offers/') == 0)
+	if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?offers') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'offers/') == 0)
 	{
 ?>
 <script>
 jQuery(document).ready(function($)
 	{
-		$('.woocommerce-MyAccount-content').prepend('<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Offers</h2></div></div>');
+		$('.woocommerce-MyAccount-content').prepend('<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Wholesale Kits</h2></div></div>');
 
 		$('#b2bking_myaccount_offers_title').empty();
 	});
@@ -292,6 +293,19 @@ jQuery(document).ready(function($)
 
 	.b2bking_myaccount_individual_offer_header_line {
 		border-bottom: 0;
+	}
+
+	.b2bking_myaccount_individual_offer_bottom_line_button {
+		background-color: #222 !important;
+		border-radius: 0 !important;
+		text-transform: uppercase !important;
+		font-family: 'Quattrocento', serif !important;
+		-webkit-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+	}
+
+	.b2bking_myaccount_individual_offer_bottom_line_button:hover {
+		background-color: #353535;
 	}
 </style>
 <?php

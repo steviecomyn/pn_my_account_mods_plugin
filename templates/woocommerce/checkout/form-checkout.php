@@ -29,6 +29,40 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 
+<?php
+
+// Checks if a user is a b2b customer or not
+    function is_user_a_b2b_account()
+        {      
+            $user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
+
+            if ( $user_is_b2b[0] === 'y' )
+                {
+                    return true;
+                }
+            else
+                {
+                    return false;
+                }
+        }
+
+		// If user is b2b, hide the coupon code input.
+		if (is_user_a_b2b_account())
+                {
+                    ?>
+
+					<style>
+						.woocommerce-form-coupon-toggle {
+							display: none !important;
+						}
+					</style>
+
+
+					<?php
+                }
+
+?>
+
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
 	<?php if ( $checkout->get_checkout_fields() ) : ?>
