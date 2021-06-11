@@ -3,7 +3,7 @@
 Plugin Name:	0_PageNorth - My Account Customisation
 Plugin URI:		https://www.pagenorth.co.uk
 Description:	Adds customisations to the My Account pages.
-Version:		0.3.3
+Version:		0.3.6.1
 Author:			PageNorth ltd
 Author URI:		https://www.pagenorth.co.uk
 License:		GPL-2.0+
@@ -98,18 +98,6 @@ function pn_acc_intercept_wc_template( $template, $template_name, $template_path
 
 	return $template;
 }
-// This picks up logged in users and redirects them to the "My Account" page when visiting the wholesale page.
-// function add_b2c_login_check()
-// {
-
-// 	if ( is_user_logged_in() && is_page(WHOLESALE_PAGE_ID) ) {
-		
-// 		wp_redirect('https://byrebecca.pagenorth.dev/account/');
-//         exit;
-//     }
-// }
-
-// add_action('wp', 'add_b2c_login_check');
 
 // This adds support for custom thumbnail sizes, required for the cart page.
 add_theme_support( 'post-thumbnails' );
@@ -149,14 +137,6 @@ function bbloomer_free_shipping_cart_notice() {
   
 }
 
-
-// // Hide coupon codes from Wholesalers.
-// function woo_get_user_role() {
-// 	global $current_user;
-// 	$user_roles = $current_user->roles;
-// 	$user_role = array_shift($user_roles);
-// 	return $user_role;
-//   }
   
   // hide coupon field on cart page for wholesale
   function hide_coupon_field_on_cart( $enabled ) {
@@ -169,3 +149,49 @@ function bbloomer_free_shipping_cart_notice() {
 	return $enabled;
   }
   add_filter( 'woocommerce_coupons_enabled', 'hide_coupon_field_on_cart' );
+
+
+  /**
+ * Hide shipping rates when free shipping is available.
+ * Updated to support WooCommerce 2.6 Shipping Zones.
+ *
+ * @param array $rates Array of rates found for the package.
+ * @return array
+ */
+function my_hide_shipping_when_free_is_available( $rates ) {
+	$free = array();
+
+	foreach ( $rates as $rate_id => $rate ) {
+		if ( 'free_shipping' === $rate->method_id ) {
+			$free[ $rate_id ] = $rate;
+			break;
+		}
+	}
+
+	return ! empty( $free ) ? $free : $rates;
+}
+
+add_filter( 'woocommerce_package_rates', 'my_hide_shipping_when_free_is_available', 100 );
+
+
+// Hide non-wholesale products from B2B Customers.
+function wholeseller_role_cat( $q ) {
+
+    // Get the current user
+    $current_user = wp_get_current_user();
+
+    // Displaying only "Wholesale" category products to "whole seller" user role
+    if ( in_array( 'b2bking_role_10078', $current_user->roles ) ) {
+        // Set here the ID for Wholesale category 
+        $q->set( 'tax_query', array(
+            array(
+                'taxonomy'	=> 'product_cat',
+                'field'		=> 'term_id',
+                'terms'		=> 97, // your category ID
+				'operator'	=> 'IN'
+            )
+        ) ); 
+    }
+}
+
+add_action( 'woocommerce_product_query', 'wholeseller_role_cat' );

@@ -230,7 +230,7 @@ include('../../../assets/config.php');
                     $b2b_menu_items = array (
                         array('Bulk Order', $page_url.'?bulkorder'),
                         array('Purchase Lists', $page_url.'?purchase-lists'),
-                        array('Wholesale Kits', $page_url.'?offers')
+                        array('Wholesale Starter Packs', $page_url.'?offers')
                     );
 
                     foreach ($b2b_menu_items as $menu_item)

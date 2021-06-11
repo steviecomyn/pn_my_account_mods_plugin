@@ -85,7 +85,7 @@ defined( 'ABSPATH' ) || exit;
 				?>
 				<tr class="tax-total">
 					<th><?php echo esc_html( WC()->countries->tax_or_vat() ) . $estimated_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></th>
-					<td data-title="<?php echo esc_attr( WC()->countries->tax_or_vat() ); ?>"><?php wc_cart_totals_taxes_total_html(); ?></td>
+					<td data-title="<?php echo esc_attr( WC()->countries->tax_or_vat() ); ?>" style="text-align: right;"><?php wc_cart_totals_taxes_total_html(); ?></td>
 				</tr>
 				<?php
 			}
