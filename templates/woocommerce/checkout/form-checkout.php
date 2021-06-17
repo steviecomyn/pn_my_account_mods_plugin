@@ -55,11 +55,42 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 						.woocommerce-form-coupon-toggle {
 							display: none !important;
 						}
+						#pwgc-redeem-gift-card-form {
+							display: none !important;
+						}
+						.giftwrap-before-cart, #-woo-checkout-3-9 > div > div.wc-giftwrap.giftwrap_checkout.giftwrap-before-cart.giftwrap-after-cart.wcgwp_could_giftwrap > div > a {
+							display: none !important;
+						}		
 					</style>
 
+					<script>
+					jQuery(document).ready(function($)
+						{
+							$('#pwgc-redeem-form').remove();
+						});
+					</script>
 
 					<?php
                 }
+
+
+
+// Creates a uniform page title.
+    function pn_acc_make_page_title($title)
+        {
+			$subtitle = "By Rebecca";
+			
+			if (is_user_a_b2b_account())
+                {
+                    $subtitle = "By Rebecca Wholesale";
+                }
+			
+			$snippet = '<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>'.$subtitle.'</h4><h2>'.$title.'</h2></div></div>';
+
+            return $snippet;
+        }
+
+	echo pn_acc_make_page_title('Checkout');
 
 ?>
 

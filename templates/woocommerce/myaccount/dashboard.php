@@ -18,112 +18,89 @@
  */
 
 // Brings in the plugin's constants file.
-include('../../../assets/config.php');
+include(ABSPATH.'wp-content/plugins/pn_my_account_mods_plugin/assets/config.php');
 
-?>
-
-<?php
 
 //============================================================================================================ PN_ACC_MODS //
 
-    // Creates a uniform page title.
-    // function pn_acc_make_page_title($title)
-    //     {
-    //         $snippet = '<div class="wholesale-title-wrapper" style="width: 100%; display: grid; place-items: center;">
-    //                     <div class="wholesale-title-box" style="padding: 16px; margin: 2em;display: grid; place-items: center;">
-    //                         <h6 style="margin: 0; padding-bottom: 10px;">By Rebecca Wholesale</h6>
-    //                         <h2 style="font-weight: 700; margin: 0;">'.$title.'</h2>
-    //                     </div>
-    //                 </div>';
-    //         return $snippet;
-    //     }
-
-    // Creates a personalised welcome message.
-    function pn_acc_welcome_message($user_name)
-        {
-            $welcome_message = "";
-            $welcome_string = "Welcome!"; 
-            $numeric_date = date("G");
-            
-            // If no username is set, show a generic welcome.
-            if (empty($user_name))
+// Creates a personalised welcome message.
+function pn_acc_welcome_message($user_name)
+    {
+        $welcome_message = "";
+        $welcome_string = "Welcome!"; 
+        $numeric_date = date("G");
+        
+        // If no username is set, show a generic welcome.
+        if (empty($user_name))
+            {
+                //Display generic welcome. 
+                return $welcome_string;
+            }
+        else
+            {
+                //Start conditionals based on military time 
+                if ($numeric_date>=0&&$numeric_date<=11)
                 {
-                    //Display generic welcome. 
-                    return $welcome_string;
+                    $welcome_string = "Good Morning, ";
                 }
-            else
+                else if($numeric_date>=12&&$numeric_date<=17) 
                 {
-                    //Start conditionals based on military time 
-                    if ($numeric_date>=0&&$numeric_date<=11)
-                    {
-                        $welcome_string = "Good Morning, ";
-                    }
-                    else if($numeric_date>=12&&$numeric_date<=17) 
-                    {
-                        $welcome_string = "Good Afternoon, "; 
-                    }
-                    else if($numeric_date>=18&&$numeric_date<=23) 
-                    {
-                        $welcome_string = "Good Evening, ";
-                    }
-
-                    //Display our greeting 
-                    return $welcome_message = $welcome_string.$user_name;
+                    $welcome_string = "Good Afternoon, "; 
                 }
-        }
-
-    // Adds the "active" class to link if on current page.
-    function pn_acc_link_is_active($page_url, $link_url)
-        {
-            $class_added = "";
-
-            if (strcmp($page_url, $link_url) == 0)
+                else if($numeric_date>=18&&$numeric_date<=23) 
                 {
-                    $class_added = 'class="pn_acc_menu_item_active"';
+                    $welcome_string = "Good Evening, ";
                 }
 
-            echo $class_added;
-        }
+                //Display our greeting 
+                return $welcome_message = $welcome_string.$user_name;
+            }
+    }
 
-    // Checks if a user is a b2b customer or not
-    function is_user_a_b2b_account()
-        {      
-            $user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
+// Adds the "active" class to link if on current page.
+function pn_acc_link_is_active($page_url, $link_url)
+    {
+        $class_added = "";
 
-            if ( $user_is_b2b[0] === 'y' )
-                {
-                    return true;
-                }
-            else
-                {
-                    return false;
-                }
-        }
+        if (strcmp($page_url, $link_url) == 0)
+            {
+                $class_added = 'class="pn_acc_menu_item_active"';
+            }
 
-    // Used to create menu items.
-    function create_menu_item($title, $url)
-        {
+        echo $class_added;
+    }
 
-            $menu_item_html = '<a href="'.$url.'" '.pn_acc_link_is_active($page_url, '/'.MY_ACCOUNT_SLUG.'/'.$url.'/').'><div class="menu-item"><span>'.$title.'</span></div></a>';
+// Checks if a user is a b2b customer or not
+function is_user_a_b2b_account()
+    {      
+        $user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
 
-            return $menu_item_html;
-        }
+        if ( $user_is_b2b[0] === 'y' )
+            {
+                return true;
+            }
+        else
+            {
+                return false;
+            }
+    }
 
-    
-    // Capture current user for Personalised Welcome.
-    global $current_user;
-    wp_get_current_user();
-    $user_name = $current_user->display_name;
+// Used to create menu items.
+function create_menu_item($title, $url)
+    {
+        $menu_item_html = '<a href="'.$url.'" '.pn_acc_link_is_active($page_url, '/'.MY_ACCOUNT_SLUG.'/'.$url.'/').'><div class="menu-item"><span>'.$title.'</span></div></a>';
 
-    // Capture page url for active-link.
-    $page_url = $_SERVER['REQUEST_URI'];
+        return $menu_item_html;
+    }
 
-    // Bring in Plugin code to detect B2BKing.
-    include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+// Capture current user for Personalised Welcome.
+global $current_user;
+wp_get_current_user();
+$user_name = $current_user->display_name;
 
-?>
+// Capture page url for active-link.
+$page_url = $_SERVER['REQUEST_URI'];
 
-<?php
 
     if ( ! defined( 'ABSPATH' ) ) {
         exit; // Exit if accessed directly.
@@ -134,9 +111,7 @@ include('../../../assets/config.php');
             'href' => array(),
         ),
     );
-?>
 
-<?php
 
 //============================================================================================================ PAGE_STARTS //
 ?>
@@ -208,70 +183,51 @@ include('../../../assets/config.php');
     
     if (get_option('pn_acc_custom_page_1_toggle') === 'active' AND is_user_a_b2b_account())
         {
-            echo create_menu_item('Take a tour of the Features', $page_url.'feature_tour/');
+            echo create_menu_item('Take a tour of the Features', $page_url.'feature_tour/?pn=Take%20a%20Tour%20of%20the%20Features');
         }
 
-?>
-            <a href="<?php echo get_site_url(); ?>/product-category/wholesale/" target="_blank">
-            <!-- <a href="<?php echo wc_get_page_permalink( 'shop' ); ?>" target="_blank"> -->
-                <div class="menu-item">
-                    <span>Browse Products</span>
-                </div>
-            </a>
-        
-        <?php 
 
-            // If b2bking is installed, add extra menu items.
-            if ( is_user_a_b2b_account() )
-                {
+    echo create_menu_item('Browse Products', wc_get_page_permalink( 'shop' ));
 
-                    // array('Sub-accounts', '/'.MY_ACCOUNT_SLUG.'/?subaccounts')
 
-                    $b2b_menu_items = array (
-                        array('Bulk Order', $page_url.'?bulkorder'),
-                        array('Purchase Lists', $page_url.'?purchase-lists'),
-                        array('Wholesale Starter Packs', $page_url.'?offers')
-                    );
+        // If b2bking is installed, add extra menu items.
+        if ( is_user_a_b2b_account() )
+            {
 
-                    foreach ($b2b_menu_items as $menu_item)
-                        {
-                            echo create_menu_item($menu_item[0], $menu_item[1]);
-                        }
+                $b2b_menu_items = array (
+                    array('Bulk Order', $page_url.'?bulkorder&pn=Bulk%20Order%20Form'),
+                    array('Purchase Lists', $page_url.'?purchase-lists&pn=Purchase%20Lists'),
+                    array('Wholesale Starter Packs', $page_url.'?offers&pn=Wholesale%20Starter%20Packs')
+                );
 
-                } // Closes the B2BKing Check.
+                // Loop through the menu items and create links
+                foreach ($b2b_menu_items as $menu_item)
+                    {
+                        echo create_menu_item($menu_item[0], $menu_item[1]);
+                    }
+
+            } // Closes the B2BKing Check.
             
-        ?>
-
-<?php
+        // If the 3rd custom page is active in the settings, show a nav link for it.
         if (get_option('pn_acc_custom_page_3_toggle') === 'active' AND is_user_a_b2b_account())
         {
-            echo create_menu_item('Wishlist', $page_url.'wishlist/');
+            echo create_menu_item('Wishlist', $page_url.'wishlist/?pn=Wishlist');
         }
 
+        // If the 4th custom page is active in the settings, show a nav link for it.
         if (get_option('pn_acc_custom_page_4_toggle') === 'active' AND is_user_a_b2b_account())
             {
-                echo create_menu_item('Personalisation', $page_url.'personalisation/');
+                echo create_menu_item('Personalisation', $page_url.'personalisation/?pn=Personalisation');
             }
 
-?>
+        // Create menu items
+        echo create_menu_item('Orders', $page_url.'orders/?pn=Orders');
+        echo create_menu_item('Account Details', $page_url.'edit-account/?pn=Account%20Details');
 
-            <a href="<?php echo esc_url( wc_get_endpoint_url( 'orders' ) ); ?>" <?php pn_acc_link_is_active($page_url, $page_url.'orders/'); ?>>
-                <div class="menu-item">
-                    <span>Order History</span>
-                </div>
-            </a>
-
-            <a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-account' ) ); ?>" <?php pn_acc_link_is_active($page_url, $page_url.'edit-account/') ?>>
-                <div class="menu-item">
-                    <span>Account details</span>
-                </div>
-            </a>
-
-<?php
-
-            if (get_option('pn_acc_custom_page_2_toggle') === 'active' AND is_user_a_b2b_account())
+    // If the 2nd custom page is active in the settings, show a nav link for it.
+    if (get_option('pn_acc_custom_page_2_toggle') === 'active' AND is_user_a_b2b_account())
         {
-            echo create_menu_item('FAQs', $page_url.'faq/');
+            echo create_menu_item('FAQs', $page_url.'faq/?pn=Frequently%20Asked%20Questions');
         }
 ?>
 

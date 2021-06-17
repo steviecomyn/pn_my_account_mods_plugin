@@ -1,0 +1,178 @@
+.b2bking_bulkorder_form_container, .b2bking_myaccount_bulkorder_container {
+    background-color: #fff;
+    border: 0;
+    box-shadow: none;
+    font-family: 'Quattrocento', serif !important;
+}
+
+.b2bking_bulkorder_form_container_top {
+    background-color: #fff;
+    color: #222;
+    display: none;
+}
+
+.b2bking_bulkorder_form_container_content {
+    border: 0;
+    box-shadow: none;
+}
+
+.b2bking_bulkorder_form_container_content_header_product {
+    color: #222;
+    font-family: 'Quattrocento', serif !important;
+}
+
+.b2bking_bulkorder_form_container_content_line {
+    border-bottom: 1px solid #ccc;
+    padding-top: 16px !important;
+}
+
+.b2bking_bulkorder_form_container_content_line input {
+    background-color: #f5f5f5 !important;
+    border-radius: 0 !important;
+}
+
+select#b2bking_bulkorder_searchby_select {
+    background-color: #fff !important;
+    color: #222;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Quattrocento', serif !important;
+}
+
+.b2bking_bulkorder_form_container_newline_container {
+    margin-top: 16px !important;
+}
+
+.b2bking_bulkorder_form_container_newline_container button {
+    background-color: #fff !important;
+    border: 1px solid #222;
+    color: #222 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    font-size: 16px !important;
+    padding: 16px 32px !important;
+    font-family: 'Quattrocento', serif !important;
+    text-transform: uppercase;
+}
+
+.b2bking_bulkorder_form_container_newline_button svg path {
+    fill: #222 !important;
+}
+
+.b2bking_bulkorder_form_container_newline_container button:hover {
+    background-color: #aaa !important;
+    color: #fff !important;
+}
+
+.b2bking_bulkorder_form_container_newline_container button:hover svg path {
+    fill: #fff !important;
+}
+
+button.b2bking_bulkorder_form_container_bottom_add_button {
+    border-radius: 0 !important;
+    background-color: #222 !important;
+    font-family: 'Quattrocento', serif !important;
+}
+
+button.b2bking_bulkorder_form_container_bottom_add_button:hover {
+    background-color: #353535 !important;
+}
+
+button.b2bking_bulkorder_form_container_bottom_save_button {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-family: 'Quattrocento', serif !important;
+    background: #222 !important;
+    color: #fff !important;
+}
+
+button.b2bking_bulkorder_form_container_bottom_save_button:hover {
+    background: #353535;
+}
+
+button.b2bking_bulkorder_form_container_bottom_save_button svg path {
+    fill: #fff !important;
+}
+
+.b2bking_bulkorder_form_container_bottom_total, .b2bking_bulkorder_form_container_bottom_total strong span bdi {
+    font-size: 24px !important;
+    font-family: 'Quattrocento', serif !important;
+}
+
+.b2bking_bulkorder_clear {
+    margin-top: 16px !important;
+}
+
+.b2bking_bulkorder_form_container_content_line_product {
+    color: #222 !important;
+}
+
+#b2bking_purchase_list_new_button {
+	background-color: #222 !important;
+	border-radius: 0 !important;
+	text-transform: uppercase !important;
+	font-family: 'Quattrocento', serif !important;
+	-webkit-transition: all .2s ease-in-out;
+  	transition: all .2s ease-in-out;
+}
+
+#b2bking_purchase_list_new_button:hover {
+	background-color: #353535;
+}
+
+button.b2bking_purchase_lists_view_list {
+	background: #222 !important;
+	padding: 6px 32px !important;
+	border-radius: 0 !important;
+	text-transform: uppercase !important;
+	font-family: 'Quattrocento', serif !important;
+	-webkit-transition: all .2s ease-in-out;
+  	transition: all .2s ease-in-out;
+}
+
+button.b2bking_purchase_lists_view_list:hover {
+	background: #353535 !important;
+}
+
+form.woocommerce-EditAccountForm.edit-account, .u-columns.woocommerce-Addresses.col2-set.addresses {
+	padding: 1em !important;
+}
+
+div.addresses {
+	padding-bottom: 2em;
+}
+
+.woocommerce-MyAccount-content > .button {
+	background-color: #000 !important;
+	color: #fff !important;
+}
+
+.b2bking_myaccount_individual_offer_container {
+    background: #fff;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.b2bking_myaccount_individual_offer_top {
+    background: #fff;
+    color: #222;
+    border-radius: 0;
+    font-family: 'Quattrocento', serif !important;
+}
+
+.b2bking_myaccount_individual_offer_header_line {
+    border-bottom: 0;
+}
+
+.b2bking_myaccount_individual_offer_bottom_line_button {
+    background-color: #222 !important;
+    border-radius: 0 !important;
+    text-transform: uppercase !important;
+    font-family: 'Quattrocento', serif !important;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.b2bking_myaccount_individual_offer_bottom_line_button:hover {
+    background-color: #353535;
+}

@@ -56,6 +56,10 @@ span.woocommerce-Price-amount .amount {
 #pwgc-redeem-gift-card-container {
 	display: none !important;	
 }
+
+tr.tax-rate > td > span {
+	float: right;
+}
 </style>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">

@@ -15,41 +15,68 @@
  * @version 3.5.0
  */
 
-?>
-
-<?php
-
 // Brings in the plugin's constants file.
-include('../../../assets/config.php');
+include(ABSPATH.'wp-content/plugins/pn_my_account_mods_plugin/assets/config.php');
 
-function check_if_we_need_a_back_button($page_url)
+if (empty($_GET['pn']))
+	{
+		$page_name = "Current Page";
+	}
+else
+	{
+		$page_name = $_GET['pn'];
+	}
+
+function check_if_we_need_a_back_button($page_url, $page_name)
 	{
 		// Check if we're on the My Account page, if not, add a back button.
-		if ($page_url == WHOLESALE_DASHBOARD_SLUG or $page_url == WHOLESALE_DASHBOARD_SLUG)
+		if ($page_url == WHOLESALE_DASHBOARD_SLUG or $page_url == MY_ACCOUNT_SLUG)
 			{
 				// Do nothing.
 			}
 		else
 			{
-				return create_back_button();
+				return create_back_button($page_url, $page_name);
 			}
 	}
 
 // Create the back button for child pages of My Account.
-function create_back_button()
+function create_back_button($page_url, $page_name)
 	{
-		// Capture the page before this one.
-		$previous_url = htmlspecialchars($_SERVER['HTTP_REFERER']);
-		$wholesale_home = get_site_url(null, '/wholesale/', 'https');
+		// If we've come from the wholesale dash, go back to that.
+		if (strpos($page_url, WHOLESALE_DASHBOARD_SLUG) !== false)
+			{
+				$wholesale_home = get_site_url(null, '/wholesale/', 'https');
 		
-		echo '<h4 class="brws_back_btn"><a style="color: #555;" href="'.$wholesale_home.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
+				//echo '<h4 class="brws_back_btn"><a style="color: #555;" href="'.$wholesale_home.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
+
+				echo '<br><h5><a style="color: #555;" href="'.$wholesale_home.'"><i class="fa fa-home" aria-hidden="true"></i> Wholesale Dashboard</a> / '.$page_name.'</h5>';
+			}
+		
+		// If we've come from my account, go back there.
+		if (strpos($page_url, MY_ACCOUNT_SLUG) !== false)
+			{
+				$wholesale_home = get_site_url(null, '/account/', 'https');
+		
+				//echo '<h4 class="brws_back_btn"><a style="color: #555;" href="'.$wholesale_home.'"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back</a></h4>';
+
+				echo '<br><h5><a style="color: #555;" href="'.$wholesale_home.'"><i class="fa fa-home" aria-hidden="true"></i> Account Dashboard</a> / '.$page_name.'</h5>';
+			}
 	}
+
+	// function tidy_page_name($page_url)
+	// 	{
+	// 		if (strpos($page_url, "?")
+	// 			{
+
+	// 			}
+	// 	}
 
 // Capture page url for active-link.
 $page_url = $_SERVER['REQUEST_URI'];
 
 // If the page *ISN'T* my-account, show the back button
-check_if_we_need_a_back_button($page_url);
+check_if_we_need_a_back_button($page_url, $page_name);
 
 
 defined( 'ABSPATH' ) || exit;
@@ -73,7 +100,9 @@ do_action( 'woocommerce_account_navigation' ); ?>
 </div>
 <?php
 
-if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?bulkorder') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'bulkorder/') == 0)
+
+
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?bulkorder&pn=Bulk%20Order%20Form') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'bulkorder/?pn=Bulk%20Order%20Form') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'bulkorder/?pn=Bulk%20Order%20Form') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'?bulkorder&pn=Bulk%20Order%20Form') == 0)
 	{
 ?>
 
@@ -200,7 +229,7 @@ jQuery(document).ready(function($)
 <?php
 	}
 
-if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'purchase-lists/') == 0)
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?purchase-lists&pn=Purchase%20Lists') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'purchase-lists/?pn=Purchase%20Lists') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'purchase-lists/?pn=Purchase%20Lists') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'?purchase-lists&pn=Purchase%20Lists') == 0)
 	{
 ?>
 <script>
@@ -213,60 +242,58 @@ jQuery(document).ready(function($)
 </script>
 
 <style>
-#b2bking_purchase_list_new_button {
-	background-color: #222 !important;
-	border-radius: 0 !important;
-	text-transform: uppercase !important;
-	font-family: 'Quattrocento', serif !important;
-	-webkit-transition: all .2s ease-in-out;
-  	transition: all .2s ease-in-out;
-}
+	#b2bking_purchase_list_new_button {
+		background-color: #222 !important;
+		border-radius: 0 !important;
+		text-transform: uppercase !important;
+		font-family: 'Quattrocento', serif !important;
+		-webkit-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+	}
 
-#b2bking_purchase_list_new_button:hover {
-	background-color: #353535;
-}
+	#b2bking_purchase_list_new_button:hover {
+		background-color: #353535;
+	}
 
-button.b2bking_purchase_lists_view_list {
-	background: #222 !important;
-	padding: 6px 32px !important;
-	border-radius: 0 !important;
-	text-transform: uppercase !important;
-	font-family: 'Quattrocento', serif !important;
-	-webkit-transition: all .2s ease-in-out;
-  	transition: all .2s ease-in-out;
-}
+	button.b2bking_purchase_lists_view_list {
+		background: #222 !important;
+		padding: 6px 32px !important;
+		border-radius: 0 !important;
+		text-transform: uppercase !important;
+		font-family: 'Quattrocento', serif !important;
+		-webkit-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+	}
 
-button.b2bking_purchase_lists_view_list:hover {
-	background: #353535 !important;
-}
-
+	button.b2bking_purchase_lists_view_list:hover {
+		background: #353535 !important;
+	}
 </style>
 <?php
 	}
 
-if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'edit-account/') == 0)
+if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'edit-account/?pn=Account%20Details') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'?edit-account&pn=Account%20Details') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?edit-account&pn=Account%20Details') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'edit-account/?pn=Account%20Details') == 0)
 	{
 ?>
 <style>
-form.woocommerce-EditAccountForm.edit-account, .u-columns.woocommerce-Addresses.col2-set.addresses {
-	padding: 1em !important;
-}
+	form.woocommerce-EditAccountForm.edit-account, .u-columns.woocommerce-Addresses.col2-set.addresses {
+		padding: 1em !important;
+	}
 
-div.addresses {
-	padding-bottom: 2em;
-}
+	div.addresses {
+		padding-bottom: 2em;
+	}
 
-.woocommerce-MyAccount-content > .button {
-	background-color: #000 !important;
-	color: #fff !important;
-}
-
+	.woocommerce-MyAccount-content > .button {
+		background-color: #000 !important;
+		color: #fff !important;
+	}
 </style>
 
 <?php
 	}
 
-	if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?offers') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'?offers') == 0)
+	if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?offers&pn=Wholesale%20Starter%20Packs') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'?offers&pn=Wholesale%20Starter%20Packs') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'offers/?pn=Wholesale%20Starter%20Packs') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'offers/?pn=Wholesale%20Starter%20Packs') == 0)
 	{
 ?>
 <script>
@@ -315,26 +342,5 @@ jQuery(document).ready(function($)
 <?php
 
 }
-?>
-<style>
-	/* MailChimp Form Embed Code - Horizontal Super Slim - 12/16/2015 v10.7
-Adapted from: http://blog.heyimcat.com/universal-signup-form/ */
 
-#mc_embed_signup form {text-align:center; padding:10px 0 10px 0;}
-.mc-field-group { display: inline-block; } /* positions input field horizontally */
-#mc_embed_signup input.email {font-family:"Open Sans","Helvetica Neue",Arial,Helvetica,Verdana,sans-serif; font-size: 15px; border: 1px solid #ABB0B2;  -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; color: #343434; background-color: #fff; box-sizing:border-box; height:32px; padding: 0px 0.4em; display: inline-block; margin: 0; width:350px; vertical-align:top;}
-#mc_embed_signup label {display:block; font-size:16px; padding-bottom:10px; font-weight:bold;}
-#mc_embed_signup .clear {display: inline-block;} /* positions button horizontally in line with input */
-#mc_embed_signup .button {font-size: 13px; border: none; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; letter-spacing: .03em; color: #fff; background-color: #aaa; box-sizing:border-box; height:32px; line-height:32px; padding:0 18px; display: inline-block; margin: 0; transition: all 0.23s ease-in-out 0s;}
-#mc_embed_signup .button:hover {background-color:#777; cursor:pointer;}
-#mc_embed_signup div#mce-responses {float:left; top:-1.4em; padding:0em .5em 0em .5em; overflow:hidden; width:90%;margin: 0 5%; clear: both;}
-#mc_embed_signup div.response {margin:1em 0; padding:1em .5em .5em 0; font-weight:bold; float:left; top:-1.5em; z-index:1; width:80%;}
-#mc_embed_signup #mce-error-response {display:none;}
-#mc_embed_signup #mce-success-response {color:#529214; display:none;}
-#mc_embed_signup label.error {display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;}
-@media (max-width: 768px) {
-    #mc_embed_signup input.email {width:100%; margin-bottom:5px;}
-    #mc_embed_signup .clear {display: block; width: 100% }
-    #mc_embed_signup .button {width: 100%; margin:0; }
-}
-</style>
+?>
