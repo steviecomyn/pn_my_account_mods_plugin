@@ -1,26 +1,26 @@
 <?php
 
 // Include the constants page, just in-case.
-include( PN_PLUGIN_PATH.'assets/config.php' );
+// include( PN_PLUGIN_PATH.'assets/config.php' );
 
-require_once( trailingslashit( ABSPATH ) .'wp-load.php' );
+// require_once( trailingslashit( ABSPATH ) .'wp-load.php' );
 
 
-echo "GOT HERE!!!!!!!!!!!!!!!!!!!! FUNCTIONS PAGE";
+// echo "GOT HERE!!!!!!!!!!!!!!!!!!!! FUNCTIONS PAGE";
 
 // This uses the page url to determine if a back button is required.
-function check_if_we_need_a_back_button($page_url)
-	{
-		// Check if we're on the My Account page, if not, add a back button.
-		if ($page_url == WHOLESALE_DASHBOARD_SLUG or $page_url == MY_ACCOUNT_SLUG)
-			{
-				// Do nothing.
-			}
-		else
-			{
-				//create_back_button();
-			}
-	}
+// function check_if_we_need_a_back_button($page_url)
+// 	{
+// 		// Check if we're on the My Account page, if not, add a back button.
+// 		if ($page_url == WHOLESALE_DASHBOARD_SLUG or $page_url == MY_ACCOUNT_SLUG)
+// 			{
+// 				// Do nothing.
+// 			}
+// 		else
+// 			{
+// 				//create_back_button();
+// 			}
+// 	}
 
 // // Create the back button for child pages of My Account.
 // function create_back_button()

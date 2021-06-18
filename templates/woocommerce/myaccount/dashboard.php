@@ -18,7 +18,7 @@
  */
 
 // Brings in the plugin's constants file.
-include(ABSPATH.'wp-content/plugins/pn_my_account_mods_plugin/assets/config.php');
+//include(ABSPATH.'wp-content/plugins/pn_my_account_mods_plugin/assets/config.php');
 
 
 //============================================================================================================ PN_ACC_MODS //
@@ -197,7 +197,7 @@ $page_url = $_SERVER['REQUEST_URI'];
                 $b2b_menu_items = array (
                     array('Bulk Order', $page_url.'?bulkorder&pn=Bulk%20Order%20Form'),
                     array('Purchase Lists', $page_url.'?purchase-lists&pn=Purchase%20Lists'),
-                    array('Wholesale Starter Packs', $page_url.'?offers&pn=Wholesale%20Starter%20Packs')
+                    //array('Wholesale Starter Packs', $page_url.'?offers&pn=Wholesale%20Starter%20Packs')
                 );
 
                 // Loop through the menu items and create links
@@ -211,7 +211,7 @@ $page_url = $_SERVER['REQUEST_URI'];
         // If the 3rd custom page is active in the settings, show a nav link for it.
         if (get_option('pn_acc_custom_page_3_toggle') === 'active' AND is_user_a_b2b_account())
         {
-            echo create_menu_item('Wishlist', $page_url.'wishlist/?pn=Wishlist');
+            echo create_menu_item('Wholesale Starter Packs', $page_url.'wishlist/?pn=Wholesale%20Starter%20Packs');
         }
 
         // If the 4th custom page is active in the settings, show a nav link for it.
@@ -220,9 +220,11 @@ $page_url = $_SERVER['REQUEST_URI'];
                 echo create_menu_item('Personalisation', $page_url.'personalisation/?pn=Personalisation');
             }
 
+
         // Create menu items
         echo create_menu_item('Orders', $page_url.'orders/?pn=Orders');
         echo create_menu_item('Account Details', $page_url.'edit-account/?pn=Account%20Details');
+
 
     // If the 2nd custom page is active in the settings, show a nav link for it.
     if (get_option('pn_acc_custom_page_2_toggle') === 'active' AND is_user_a_b2b_account())

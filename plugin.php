@@ -200,4 +200,45 @@ function pn_hide_non_wholesale_from_b2b_users( $q ) {
     }
 }
 
+// Hide non-wholesale products from B2B Customers.
+function pn_hide_wholesale_starter_packs_from_b2c_users( $q ) {
+
+    // Get the current user
+    $current_user = wp_get_current_user();
+
+    // Displaying only "Wholesale" category products to "whole seller" user role
+    if ( !in_array( 'b2bking_role_10078', $current_user->roles ) ) {
+        // Set here the ID for Wholesale category 
+        $q->set( 'tax_query', array(
+            array(
+                'taxonomy'	=> 'product_cat',
+                'field'		=> 'term_id',
+                'terms'		=> 107, // your category ID
+				'operator'	=> 'NOT IN'
+            )
+        ) ); 
+    }
+}
+
 add_action( 'woocommerce_product_query', 'pn_hide_non_wholesale_from_b2b_users' );
+add_action( 'woocommerce_product_query', 'pn_hide_wholesale_starter_packs_from_b2c_users' );
+
+
+// Used to show a header image on the category pages.
+function wc_category_header_image() {
+    if ( is_product_category() ){
+        $term      = get_queried_object(); // get the WP_Term Object
+        $image_id  = get_term_meta( $term->term_id, 'thumbnail_id', true );
+        
+        if( empty( $image_id ) && $term->parent > 0 ) {
+            $image_id  = get_term_meta( $term->parent, 'thumbnail_id', true );
+        }
+        $image_src = wp_get_attachment_url( $image_id ); // Get the image Url
+    
+        if ( ! empty($image_src) ) {
+            //echo '<img src="' . $image_src . '" alt="' . $term->name . '" />';
+          
+            echo '<div class="brws-cat-header" style="display: block; width: 100% !important; background: url('.$image_src.'); background-size: cover; background-position: center; height: 400px;"></div>';
+        }
+    }
+}
