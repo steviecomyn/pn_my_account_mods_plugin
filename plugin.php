@@ -3,7 +3,7 @@
 Plugin Name:	0_PageNorth - My Account Customisation
 Plugin URI:		https://www.pagenorth.co.uk
 Description:	Adds customisations to the My Account pages.
-Version:		0.3.9
+Version:		0.4
 Author:			PageNorth ltd
 Author URI:		https://www.pagenorth.co.uk
 License:		GPL-2.0+
@@ -105,11 +105,6 @@ function pn_acc_intercept_wc_template( $template, $template_name, $template_path
 
 	return $template;
 }
-
-// This adds support for custom thumbnail sizes, required for the cart page.
-//add_theme_support( 'post-thumbnails' );
-
-//add_image_size( 'brws-cart-thumb', 180, 180 );
 
 // Adds a disclaimer at checkout, if you spend over £500 you get free shipping.
 
@@ -236,7 +231,6 @@ function wc_category_header_image() {
         $image_src = wp_get_attachment_url( $image_id ); // Get the image Url
     
         if ( ! empty($image_src) ) {
-            //echo '<img src="' . $image_src . '" alt="' . $term->name . '" />';
           
             echo '<div class="brws-cat-header" style="display: block; width: 100% !important; background: url('.$image_src.'); background-size: cover; background-position: center; height: 400px;"></div>';
         }
