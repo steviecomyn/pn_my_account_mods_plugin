@@ -3,7 +3,7 @@
 Plugin Name:	0_PageNorth - My Account Customisation
 Plugin URI:		https://www.pagenorth.co.uk
 Description:	Adds customisations to the My Account pages.
-Version:		0.4
+Version:		0.4.1
 Author:			PageNorth ltd
 Author URI:		https://www.pagenorth.co.uk
 License:		GPL-2.0+
@@ -59,8 +59,8 @@ function pm_myacc_enqueue_files()
 		wp_enqueue_style( 'font-awesome' );
 
 		// loads a My Accounts CSS file in the head.
-		wp_register_style( 'myaccount-css', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
-		wp_enqueue_style( 'myaccount-css' );
+		wp_register_style( 'myaccount-css', plugin_dir_url( __FILE__ ) . 'assets/css/style2.css' );
+		wp_enqueue_style( 'myaccount-css');
 
 		// Loads in the css for the brws tweaks.
 		wp_register_style( 'brws-css', plugin_dir_url( __FILE__ ) . 'assets/css/brws-base-styles.css' );
@@ -236,3 +236,9 @@ function wc_category_header_image() {
         }
     }
 }
+
+//Turn off backorders
+add_filter( 'woocommerce_product_backorders_allowed', '__return_false' );
+
+// Hide stock status on product pages
+add_filter( 'woocommerce_get_stock_html', '__return_empty_string', 10, 2 );

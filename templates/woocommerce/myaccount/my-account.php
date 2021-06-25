@@ -293,23 +293,18 @@ if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'edit-account/?pn=Account%20Detai
 <?php
 	}
 
-	if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'?offers&pn=Wholesale%20Starter%20Packs') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'?offers&pn=Wholesale%20Starter%20Packs') == 0 OR strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'offers/?pn=Wholesale%20Starter%20Packs') == 0 OR strcmp($page_url, MY_ACCOUNT_SLUG.'offers/?pn=Wholesale%20Starter%20Packs') == 0)
+	if (strcmp($page_url, WHOLESALE_DASHBOARD_SLUG.'wishlist/?pn=Wholesale%20Starter%20Packs') == 0)
 	{
 ?>
 <script>
+	// Hides the slider on the wholesale starter packs page, as it's already featured in the page futher up.
 jQuery(document).ready(function($)
 	{
-		$('.woocommerce-MyAccount-content').prepend('<div class="brws_myacc_page_title_wrapper"><div class="brws_mycc_page_title_box"><h4>By Rebecca Wholesale</h4><h2>Wholesale Starter Packs</h2></div></div>');
-
-		$('#b2bking_myaccount_offers_title').empty();
-
-		var kits_paragraph = "This section allows you to purchase a Wholesale Starter Pack for Holly Silver by Rebecca to get you all set up for your first order to showcase the top selling products and provide you with a good selection of the jewellery in your shop. These kits will also come with branded point of sale and display stands and materials to get you started and produce a really attractive jewellery display.";
-
-		$("#b2bking_myaccount_offers_title").append('<p style="width: 80%; margin: 0 auto;text-align: center; padding-bottom: 1.5em;">'+kits_paragraph+'</p>');
+		$("#section-34-15331").remove();
 	});
 </script>
 <style>
-	.b2bking_myaccount_individual_offer_container {
+	/* .b2bking_myaccount_individual_offer_container {
 		background: #fff;
 		border-radius: 0;
         box-shadow: none;
@@ -337,7 +332,7 @@ jQuery(document).ready(function($)
 
 	.b2bking_myaccount_individual_offer_bottom_line_button:hover {
 		background-color: #353535;
-	}
+	} */
 </style>
 <?php
 

@@ -149,7 +149,7 @@ $page_url = $_SERVER['REQUEST_URI'];
 ?>
             <div class="brws-info-box">
                 <img src="<?php echo plugins_url( '../../../assets/images/info.svg' , __FILE__ ); ?>" alt="Information" width="20" height="20">
-                <p style="margin: 0;">This is your wholesale dashboard, here you can change your account details, like your <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">password</a>, your <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">delivery and billing addresses</a>, and <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">payment details</a>. You can create bulk orders within the bulk order form page, and view your orders in <a href="<?php echo wc_get_endpoint_url( 'orders' ); ?>">Order History</a>. We also have a Feature Tour and FAQ if you need any help with how to use our wholesale service.</p>
+                <p style="margin: 0;">This is your wholesale dashboard, here you can change your account details, like your <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">password</a>, your <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">delivery and billing addresses</a>, and <a href="<?php echo wc_get_endpoint_url( 'edit-account' ); ?>">payment details</a>. You can create bulk orders within the bulk order form page, and view your orders in <a href="<?php echo wc_get_endpoint_url( 'orders' ); ?>">Order History</a>. We also have a Feature Tour and FAQ if you need any help with how to use our wholesale service. Min Spend for Wholesale is <b>£200+VAT</b>, Carriage Paid <b>£500+VAT</b>.</p>
             </div>
 
 <?php
