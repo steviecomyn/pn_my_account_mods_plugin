@@ -59,7 +59,7 @@ function pm_myacc_enqueue_files()
 		wp_enqueue_style( 'font-awesome' );
 
 		// loads a My Accounts CSS file in the head.
-		wp_register_style( 'myaccount-css', plugin_dir_url( __FILE__ ) . 'assets/css/style2.css' );
+		wp_register_style( 'myaccount-css', plugin_dir_url( __FILE__ ) . 'assets/css/style6.css' );
 		wp_enqueue_style( 'myaccount-css');
 
 		// Loads in the css for the brws tweaks.
@@ -242,3 +242,15 @@ add_filter( 'woocommerce_product_backorders_allowed', '__return_false' );
 
 // Hide stock status on product pages
 add_filter( 'woocommerce_get_stock_html', '__return_empty_string', 10, 2 );
+
+
+// Stop Gutenberg going fullscreen.
+add_action( 'enqueue_block_editor_assets', 'wpdd_disable_editor_fullscreen_by_default' );
+/**
+ * Disable Fullscreen Gutenberg.
+ */
+function wpdd_disable_editor_fullscreen_by_default() {
+	$script = "window.onload = function() { const isFullscreenMode = wp.data.select( 'core/edit-post' ).isFeatureActive( 'fullscreenMode' ); if ( isFullscreenMode ) { wp.data.dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' ); } }";
+		
+	wp_add_inline_script( 'wp-blocks', $script );
+}

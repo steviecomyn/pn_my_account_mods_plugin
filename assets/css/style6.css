@@ -50,11 +50,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  align-items: center;
   -ms-flex-line-pack: stretch;
       align-content: stretch;
+  border-radius: 6px;
 }
 
-#pn_myacc .brws-info-box img {
+#pn_myacc .brws-info-box img.info-icon {
   margin: auto 16px auto 4px;
 }
 
@@ -80,7 +82,7 @@
 #pn_myacc .menu-items-wrapper .menu-item {
   background: #e5e5e5;
   color: #242424;
-  padding: 6em 2em;
+  padding: 3em 2em;
   border: 1px solid #e5e5e5;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -155,6 +157,10 @@
   }
   #pn_myacc .menu-items-wrapper .menu-item span {
     font-size: 1em;
+  }
+
+  #pn_myacc .brws-info-box img.dash-img {
+    display: none;
   }
 }
 
