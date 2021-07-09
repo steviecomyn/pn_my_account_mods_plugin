@@ -1,0 +1,111 @@
+// class-b2bking.php Line: 2196
+
+<?php
+
+function b2bkingdownloadpurchaselist(){
+		// Check security nonce. 
+		if ( ! check_ajax_referer( 'b2bking_security_nonce', 'security' ) ) {
+		  	wp_send_json_error( 'Invalid security token sent.' );
+		    wp_die();
+		}
+
+		$listid = sanitize_text_field($_REQUEST['list']);
+
+		$list_name = esc_html__('b2bking_purchase_list','b2bking');
+
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=".$list_name."_".$listid.".csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+
+		$output = fopen("php://output", "wb");
+		// build header
+		$headerrow = array(esc_html__('Name','b2bking'), esc_html__('SKU','b2bking'), esc_html__('Quantity','b2bking'), esc_html__('RRP','b2bking'));
+
+		fputcsv($output, $headerrow);
+
+
+		// parse list and for each line write data
+		$list_details = get_post_meta($listid,'b2bking_purchase_list_details', true);
+		$list_items = explode('|', $list_details);
+		$list_items = array_filter($list_items);
+
+		foreach ($list_items as $list_item){
+			
+			$item = explode(':', $list_item);
+			$product_id = $item[0];
+			$product_qty = $item[1];
+			$productobj = wc_get_product($product_id);
+
+			$product_title = $productobj -> get_name();
+			$product_sku = $productobj -> get_sku();
+			$product_rrp = $productobj -> get_price();
+			if (empty($product_sku)){
+				$product_sku = '-';
+			}
+
+			$csv_array = array($product_title, $product_sku, $product_qty, $product_rrp);
+
+			fputcsv($output, $csv_array); 
+		
+		}
+
+
+		fclose($output);
+		exit();
+	}
+
+
+/// ORIGINAL VERSION
+
+	function b2bkingdownloadpurchaselist(){
+		// Check security nonce. 
+		if ( ! check_ajax_referer( 'b2bking_security_nonce', 'security' ) ) {
+		  	wp_send_json_error( 'Invalid security token sent.' );
+		    wp_die();
+		}
+
+		$listid = sanitize_text_field($_REQUEST['list']);
+
+		$list_name = esc_html__('b2bking_purchase_list','b2bking');
+
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=".$list_name."_".$listid.".csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+
+		$output = fopen("php://output", "wb");
+		// build header
+		$headerrow = array(esc_html__('Name','b2bking'), esc_html__('SKU','b2bking'), esc_html__('Quantity','b2bking'));
+
+		fputcsv($output, $headerrow);
+
+
+		// parse list and for each line write data
+		$list_details = get_post_meta($listid,'b2bking_purchase_list_details', true);
+		$list_items = explode('|', $list_details);
+		$list_items = array_filter($list_items);
+
+		foreach ($list_items as $list_item){
+			
+			$item = explode(':', $list_item);
+			$product_id = $item[0];
+			$product_qty = $item[1];
+			$productobj = wc_get_product($product_id);
+
+			$product_title = $productobj -> get_name();
+			$product_sku = $productobj -> get_sku();
+			if (empty($product_sku)){
+				$product_sku = '-';
+			}
+
+			$csv_array = array($product_title, $product_sku, $product_qty);
+
+			fputcsv($output, $csv_array); 
+		
+		}
+
+
+		fclose($output);
+		exit();
+	}

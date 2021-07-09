@@ -45,6 +45,8 @@ include('custom_page_2.php');
 include('custom_page_3.php');
 // This code adds the ability to add new pages to My Account, using the above shortcodes.
 include('custom_page_4.php');
+// This adds in the item count indicator to the basket icon using a shortcode.
+include('cart-item-count.php');
 
 //============================================================================================================ WP_HOOKS //
 
@@ -144,8 +146,10 @@ function hide_coupon_field_on_cart( $enabled ) {
 
 	$user_is_b2b = get_user_meta(get_current_user_id(),'b2bking_b2buser', true);
 
-	if ( $user_is_b2b[0] === 'y' ) {
-		$enabled = false;
+	if (!empty($user_is_b2b[0])) {
+		if ( $user_is_b2b[0] === 'y' ) {
+			$enabled = false;
+		}
 	}
 	return $enabled;
 }

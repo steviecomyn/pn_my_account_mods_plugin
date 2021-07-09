@@ -188,7 +188,7 @@ $page_url = $_SERVER['REQUEST_URI'];
         }
 
 
-    echo create_menu_item('Browse Products & Collections', wc_get_page_permalink( 'shop' ));
+    echo create_menu_item('Browse Products & Collections', wc_get_page_permalink( 'shop' )."?pn=All%20Products");
 
 
         // If b2bking is installed, add extra menu items.
